@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkyywtbvkummv"]
+
+[ext_resource type="PackedScene" uid="uid://bf71m5f7idu34" path="res://Scenes/Fruits/fruit_template.tscn" id="1_bk4cb"]
+[ext_resource type="Script" path="res://Scenes/Fruits/strawberry.gd" id="2_0b18d"]
+[ext_resource type="Texture2D" uid="uid://cs8vdravbksll" path="res://Assets/fruit union/fruits.png" id="3_8aej5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxnmr"]
+size = Vector2(120, 110)
+
+[node name="Strawberry" instance=ExtResource("1_bk4cb")]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("2_0b18d")
+
+[node name="Hitbox" parent="." index="0"]
+position = Vector2(-1.39475e-05, 5)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_xxnmr")
+
+[node name="Image" parent="." index="1"]
+texture = ExtResource("3_8aej5")
+hframes = 8
+frame = 1

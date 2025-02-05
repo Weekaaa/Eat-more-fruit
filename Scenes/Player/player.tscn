@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0lswl7o4nwjr"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_h21yi"]
+[ext_resource type="Texture2D" uid="uid://box3lg3tkxpki" path="res://Assets/oldman_walk_sheet.png" id="1_oxs2o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0aulo"]
+radius = 15.0
+height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm5p3"]
+radius = 20.0
+height = 60.0
+
+[sub_resource type="Animation" id="Animation_laxrc"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_g50as"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_78tqc"]
+_data = {
+"RESET": SubResource("Animation_g50as"),
+"walk": SubResource("Animation_laxrc")
+}
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_h21yi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+rotation = 1.5708
+texture = ExtResource("1_oxs2o")
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_0aulo")
+
+[node name="PickUpRange" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpRange"]
+shape = SubResource("CapsuleShape2D_nm5p3")
+debug_color = Color(0, 0.646344, 0.239302, 0.42)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_78tqc")
+}
+
+[connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
