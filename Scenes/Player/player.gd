@@ -26,5 +26,6 @@ func _on_pick_up_range_body_entered(body):
 	if "collected" in body:
 		if body.get_parent().name == 'Strawberry':
 			Strawberries += 1
-			print(Strawberries)
 		body.collected()
+		Globals.entities -= 1
+		print(Globals.entities)
