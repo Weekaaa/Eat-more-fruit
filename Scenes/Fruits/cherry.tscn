@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmf2vtsdysxtu"]
+
+[ext_resource type="PackedScene" uid="uid://bf71m5f7idu34" path="res://Scenes/Fruits/fruit_template.tscn" id="1_85rih"]
+[ext_resource type="Texture2D" uid="uid://cs8vdravbksll" path="res://Assets/fruit union/fruits.png" id="2_f5k0a"]
+[ext_resource type="Script" path="res://Scenes/Fruits/cherry.gd" id="2_yt7pm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hfum"]
+radius = 70.0
+
+[node name="Cherry" instance=ExtResource("1_85rih")]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("2_yt7pm")
+
+[node name="Hitbox" parent="." index="0"]
+shape = SubResource("CircleShape2D_1hfum")
+
+[node name="Image" parent="." index="1"]
+texture = ExtResource("2_f5k0a")
+hframes = 8

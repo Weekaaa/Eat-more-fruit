@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://xn5xvyiesbaw"]
+
+[ext_resource type="PackedScene" uid="uid://bf71m5f7idu34" path="res://Scenes/Fruits/fruit_template.tscn" id="1_6cjok"]
+[ext_resource type="Script" path="res://Scenes/Fruits/grape.gd" id="2_rvmni"]
+[ext_resource type="Texture2D" uid="uid://cs8vdravbksll" path="res://Assets/fruit union/fruits.png" id="2_xvcu8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c2vv4"]
+radius = 80.0
+
+[node name="Grape" instance=ExtResource("1_6cjok")]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("2_rvmni")
+
+[node name="Hitbox" parent="." index="0"]
+position = Vector2(-3.435, 2.965)
+shape = SubResource("CircleShape2D_c2vv4")
+
+[node name="Image" parent="." index="1"]
+texture = ExtResource("2_xvcu8")
+hframes = 8
+frame = 2
