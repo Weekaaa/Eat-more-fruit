@@ -27,8 +27,10 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 		$Fruits/Cherry.add_child(fruit)
 		
 	Globals.entities += 1
-	print(Globals.entities)
 
 func _on_strawberry_timer_timeout():
 	if Globals.entities < 100:
 		_spawn_fruit(Strawberry, 'Strawberry')
+
+func _on_strawberry_shop_button_pressed():
+	$Control/StrawberryShop.visible = !($Control/StrawberryShop.visible)
