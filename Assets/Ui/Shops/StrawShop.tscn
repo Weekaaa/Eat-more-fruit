@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnnjettts1l5q"]
+[gd_scene load_steps=10 format=3 uid="uid://bnnjettts1l5q"]
 
 [ext_resource type="Texture2D" uid="uid://b62bi4bqslsar" path="res://Assets/Ui/Theme/nine_path_3.png" id="1_bn63n"]
+[ext_resource type="Script" path="res://Assets/Ui/Shops/straw_shop.gd" id="1_dl5ys"]
 [ext_resource type="FontFile" uid="uid://dwtw786qbm6b7" path="res://Assets/MinecraftStandard.otf" id="2_pn3jg"]
 [ext_resource type="LabelSettings" uid="uid://cg820l4knx6rb" path="res://Assets/Ui/UpgradeName.tres" id="3_hdreg"]
 [ext_resource type="LabelSettings" uid="uid://df8dgdyhpyros" path="res://Assets/Ui/UpgradeDesc.tres" id="4_rruh3"]
 [ext_resource type="PackedScene" uid="uid://dspdcdp0tqom8" path="res://Assets/Ui/buy_button.tscn" id="5_f702u"]
 [ext_resource type="PackedScene" uid="uid://4y7j6bhj10o7" path="res://Assets/fruit union/strawberryUI.tscn" id="6_dpurk"]
+[ext_resource type="LabelSettings" uid="uid://caopa1y6hneyg" path="res://price.tres" id="8_r68hc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqngo"]
 bg_color = Color(0.941176, 0.403922, 0.2, 1)
@@ -21,6 +23,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
+script = ExtResource("1_dl5ys")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -76,13 +79,31 @@ size_flags_vertical = 0
 text = "Increases the player's walk speed."
 label_settings = ExtResource("4_rruh3")
 
-[node name="BuyButton" parent="NinePatchRect/VBoxContainer/HBoxContainer" instance=ExtResource("5_f702u")]
+[node name="SpeedButton" parent="NinePatchRect/VBoxContainer/HBoxContainer" instance=ExtResource("5_f702u")]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer/BuyButton" instance=ExtResource("6_dpurk")]
+[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer/SpeedButton" instance=ExtResource("6_dpurk")]
 position = Vector2(-97, -4)
 scale = Vector2(0.333333, 0.333333)
+
+[node name="SpeedPrice" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/SpeedButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("8_r68hc")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
@@ -113,13 +134,31 @@ text = "Increase the rate at which strawberies
 spawn."
 label_settings = ExtResource("4_rruh3")
 
-[node name="BuyButton" parent="NinePatchRect/VBoxContainer/HBoxContainer2" instance=ExtResource("5_f702u")]
+[node name="RateButton" parent="NinePatchRect/VBoxContainer/HBoxContainer2" instance=ExtResource("5_f702u")]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer2/BuyButton" instance=ExtResource("6_dpurk")]
+[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer2/RateButton" instance=ExtResource("6_dpurk")]
 position = Vector2(-97, -4)
 scale = Vector2(0.333333, 0.333333)
+
+[node name="RatePrice" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/RateButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("8_r68hc")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
@@ -150,10 +189,32 @@ text = "Expands the radius at which the player
 can grab fruits."
 label_settings = ExtResource("4_rruh3")
 
-[node name="BuyButton" parent="NinePatchRect/VBoxContainer/HBoxContainer3" instance=ExtResource("5_f702u")]
+[node name="RangeButton" parent="NinePatchRect/VBoxContainer/HBoxContainer3" instance=ExtResource("5_f702u")]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer3/BuyButton" instance=ExtResource("6_dpurk")]
+[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer3/RangeButton" instance=ExtResource("6_dpurk")]
 position = Vector2(-97, -4)
 scale = Vector2(0.333333, 0.333333)
+
+[node name="RangePrice" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer3/RangeButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -12.0
+offset_right = 20.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("8_r68hc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/SpeedButton" to="." method="_on_speed_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer2/RateButton" to="." method="_on_rate_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer3/RangeButton" to="." method="_on_range_button_button_pressed"]

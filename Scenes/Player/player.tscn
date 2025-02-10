@@ -66,9 +66,8 @@ visible = false
 shape = SubResource("CapsuleShape2D_0aulo")
 
 [node name="PickUpRange" type="Area2D" parent="."]
-visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpRange"]
+[node name="Range" type="CollisionShape2D" parent="PickUpRange"]
 shape = SubResource("CapsuleShape2D_nm5p3")
 debug_color = Color(0, 0.646344, 0.239302, 0.42)
 

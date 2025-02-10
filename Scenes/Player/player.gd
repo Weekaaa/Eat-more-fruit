@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-var Strawberries: int = 0
+var Strawberries: int = 500
 
 var speed: int = 150
 var _theta: float
 var _direction: Vector2
 @export var rotation_speed: float = TAU * 2
+
 
 func _process(_delta):
 	_direction = Input.get_vector("left", "right", "up", "down")

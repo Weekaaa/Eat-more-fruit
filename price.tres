@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://caopa1y6hneyg"]
+
+[ext_resource type="FontFile" uid="uid://dwtw786qbm6b7" path="res://Assets/MinecraftStandard.otf" id="1_g2g5a"]
+
+[resource]
+font = ExtResource("1_g2g5a")
+font_size = 12

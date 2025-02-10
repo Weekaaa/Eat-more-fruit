@@ -34,3 +34,22 @@ func _on_strawberry_timer_timeout():
 
 func _on_strawberry_shop_button_pressed():
 	$Control/StrawberryShop.visible = !($Control/StrawberryShop.visible)
+
+#===========================================================#
+#-----------------------SHOP-BUTTONS------------------------#
+#===========================================================#
+
+func _on_strawberry_shop_purchase_range():
+	if $Player.Strawberries >= %StrawberryShop.RangePrice:
+			$Player.get_child(2).scale *= 1.1
+			$Player.Strawberries -= %StrawberryShop.RangePrice
+
+func _on_strawberry_shop_purchase_rate():
+	if $Player.Strawberries >= %StrawberryShop.RatePrice:
+			%StrawberryTimer.wait_time -= 0.05
+			$Player.Strawberries -= %StrawberryShop.RatePrice
+
+func _on_strawberry_shop_purchase_speed():
+	if $Player.Strawberries >= %StrawberryShop.SpeedPrice:
+		$Player.speed += 20
+		$Player.Strawberries -= %StrawberryShop.SpeedPrice
