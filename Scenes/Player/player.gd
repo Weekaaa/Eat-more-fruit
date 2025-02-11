@@ -1,7 +1,5 @@
 extends CharacterBody2D
 
-var Strawberries: int = 500
-
 var speed: int = 150
 var _theta: float
 var _direction: Vector2
@@ -26,7 +24,6 @@ func _physics_process(delta):
 func _on_pick_up_range_body_entered(body):
 	if "collected" in body:
 		if body.get_parent().name == 'Strawberry':
-			Strawberries += 1
+			Globals.Strawberries += 1
 		body.collected()
 		Globals.entities -= 1
-		print(Globals.entities)

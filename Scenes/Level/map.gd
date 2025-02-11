@@ -5,8 +5,8 @@ extends Node2D
 @onready var Grape: PackedScene = preload("res://Scenes/Fruits/grape.tscn")
 
 func _process(_delta):
-	if int(%StrCount.text) != $Player.Strawberries:
-		%StrCount.text = str($Player.Strawberries)
+	if int(%StrCount.text) != Globals.Strawberries:
+		%StrCount.text = Globals.fix_nums(Globals.Strawberries)
 	
 func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	var min_spawn_area = $SpawnLocations/Marker2D.global_position
@@ -40,16 +40,19 @@ func _on_strawberry_shop_button_pressed():
 #===========================================================#
 
 func _on_strawberry_shop_purchase_range():
-	if $Player.Strawberries >= %StrawberryShop.RangePrice:
-			$Player.get_child(2).scale *= 1.1
-			$Player.Strawberries -= %StrawberryShop.RangePrice
+	if Globals.Strawberries >= Globals.RangePrice:
+		$Player.get_child(2).scale *= 1.1
+		Globals.Strawberries -= Globals.RangePrice
+		Globals.RangePrice *= 2
 
 func _on_strawberry_shop_purchase_rate():
-	if $Player.Strawberries >= %StrawberryShop.RatePrice:
-			%StrawberryTimer.wait_time -= 0.06
-			$Player.Strawberries -= %StrawberryShop.RatePrice
+	if Globals.Strawberries >= Globals.RatePrice:
+		$StrawberryTimer.wait_time -= 0.05
+		Globals.Strawberries -= Globals.RatePrice
+		Globals.RatePrice *= 2
 
 func _on_strawberry_shop_purchase_speed():
-	if $Player.Strawberries >= %StrawberryShop.SpeedPrice:
+	if Globals.Strawberries >= Globals.SpeedPrice:
 		$Player.speed += 20
-		$Player.Strawberries -= %StrawberryShop.SpeedPrice
+		Globals.Strawberries -= Globals.SpeedPrice
+		Globals.SpeedPrice *= 2
