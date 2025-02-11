@@ -46,7 +46,7 @@ func _on_strawberry_shop_purchase_range():
 
 func _on_strawberry_shop_purchase_rate():
 	if $Player.Strawberries >= %StrawberryShop.RatePrice:
-			%StrawberryTimer.wait_time -= 0.05
+			%StrawberryTimer.wait_time -= 0.06
 			$Player.Strawberries -= %StrawberryShop.RatePrice
 
 func _on_strawberry_shop_purchase_speed():

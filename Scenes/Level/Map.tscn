@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://do340sd2xsck6" path="res://Assets/Ui/Dialog/DialogueBoxSimple.png" id="4_u5i86"]
 [ext_resource type="PackedScene" uid="uid://4y7j6bhj10o7" path="res://Assets/fruit union/strawberryUI.tscn" id="5_xjanq"]
 [ext_resource type="FontFile" uid="uid://dwtw786qbm6b7" path="res://Assets/MinecraftStandard.otf" id="6_ce8c5"]
-[ext_resource type="StyleBox" uid="uid://clp3m7u48ybq6" path="res://Assets/Ui/buttons_template.tres" id="7_1t068"]
+[ext_resource type="StyleBox" path="res://Assets/Ui/buttons_template.tres" id="7_1t068"]
 [ext_resource type="PackedScene" uid="uid://bnnjettts1l5q" path="res://Assets/Ui/Shops/StrawShop.tscn" id="8_ccw6f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u60wp"]
