@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://Scenes/Level/map.gd" id="1_p2x64"]
 [ext_resource type="PackedScene" uid="uid://c0lswl7o4nwjr" path="res://Scenes/Player/player.tscn" id="2_wcei2"]
 [ext_resource type="Texture2D" uid="uid://do340sd2xsck6" path="res://Assets/Ui/Dialog/DialogueBoxSimple.png" id="4_u5i86"]
-[ext_resource type="PackedScene" uid="uid://4y7j6bhj10o7" path="res://Assets/fruit union/strawberryUI.tscn" id="5_xjanq"]
+[ext_resource type="PackedScene" uid="uid://4y7j6bhj10o7" path="res://Scenes/UI/strawberryUI.tscn" id="5_xjanq"]
 [ext_resource type="FontFile" uid="uid://dwtw786qbm6b7" path="res://Assets/MinecraftStandard.otf" id="6_ce8c5"]
-[ext_resource type="StyleBox" path="res://Assets/Ui/buttons_template.tres" id="7_1t068"]
+[ext_resource type="StyleBox" uid="uid://clp3m7u48ybq6" path="res://Scenes/UI/Templates/buttons_template.tres" id="7_1t068"]
 [ext_resource type="PackedScene" uid="uid://bnnjettts1l5q" path="res://Assets/Ui/Shops/StrawShop.tscn" id="8_ccw6f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u60wp"]
@@ -522,7 +522,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 1
 
-[node name="FruitCount" type="VBoxContainer" parent="Control"]
+[node name="FruitCounters" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -534,11 +534,11 @@ offset_bottom = 29.0
 grow_horizontal = 0
 theme_override_constants/separation = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/FruitCount"]
+[node name="StrawberryCounter" type="HBoxContainer" parent="Control/FruitCounters"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Control/FruitCount/HBoxContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/FruitCounters/StrawberryCounter"]
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("4_u5i86")
@@ -547,11 +547,11 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Ui" parent="Control/FruitCount/HBoxContainer/NinePatchRect" instance=ExtResource("5_xjanq")]
+[node name="Ui" parent="Control/FruitCounters/StrawberryCounter/NinePatchRect" instance=ExtResource("5_xjanq")]
 position = Vector2(8, 7.519)
 scale = Vector2(0.093, 0.093)
 
-[node name="StrCount" type="Label" parent="Control/FruitCount/HBoxContainer"]
+[node name="StrCount" type="Label" parent="Control/FruitCounters/StrawberryCounter"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_ce8c5")
@@ -559,7 +559,7 @@ theme_override_font_sizes/font_size = 6
 text = "0"
 label_settings = SubResource("LabelSettings_ma6my")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="Shops" type="HBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -570,7 +570,7 @@ offset_right = 38.0
 offset_bottom = -12.0
 grow_vertical = 0
 
-[node name="StrawberryShopButton" type="Button" parent="Control/HBoxContainer"]
+[node name="StrawberryShopButton" type="Button" parent="Control/Shops"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w1y4b")
@@ -578,7 +578,7 @@ theme_override_styles/pressed = ExtResource("7_1t068")
 theme_override_styles/normal = ExtResource("7_1t068")
 text = "LLl"
 
-[node name="Ui" parent="Control/HBoxContainer/StrawberryShopButton" instance=ExtResource("5_xjanq")]
+[node name="Ui" parent="Control/Shops/StrawberryShopButton" instance=ExtResource("5_xjanq")]
 position = Vector2(11, 11)
 scale = Vector2(0.135417, 0.135417)
 
@@ -591,5 +591,5 @@ autostart = true
 [connection signal="purchase_range" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_range"]
 [connection signal="purchase_rate" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_rate"]
 [connection signal="purchase_speed" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_speed"]
-[connection signal="pressed" from="Control/HBoxContainer/StrawberryShopButton" to="." method="_on_strawberry_shop_button_pressed"]
+[connection signal="pressed" from="Control/Shops/StrawberryShopButton" to="." method="_on_strawberry_shop_button_pressed"]
 [connection signal="timeout" from="StrawberryTimer" to="." method="_on_strawberry_timer_timeout"]

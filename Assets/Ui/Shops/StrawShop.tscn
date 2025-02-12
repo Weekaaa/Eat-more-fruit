@@ -3,11 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://b62bi4bqslsar" path="res://Assets/Ui/Theme/nine_path_3.png" id="1_bn63n"]
 [ext_resource type="Script" path="res://Assets/Ui/Shops/straw_shop.gd" id="1_dl5ys"]
 [ext_resource type="FontFile" uid="uid://dwtw786qbm6b7" path="res://Assets/MinecraftStandard.otf" id="2_pn3jg"]
-[ext_resource type="LabelSettings" path="res://Assets/Ui/UpgradeName.tres" id="3_hdreg"]
-[ext_resource type="LabelSettings" path="res://Assets/Ui/UpgradeDesc.tres" id="4_rruh3"]
-[ext_resource type="PackedScene" uid="uid://bwp1ih2chikf4" path="res://Assets/Ui/buy_button.tscn" id="5_f702u"]
-[ext_resource type="PackedScene" uid="uid://4y7j6bhj10o7" path="res://Assets/fruit union/strawberryUI.tscn" id="6_dpurk"]
-[ext_resource type="LabelSettings" uid="uid://dltsqqyendawn" path="res://price.tres" id="8_r68hc"]
+[ext_resource type="LabelSettings" uid="uid://cg820l4knx6rb" path="res://Scenes/UI/Templates/UpgradeName.tres" id="3_hdreg"]
+[ext_resource type="LabelSettings" uid="uid://df8dgdyhpyros" path="res://Scenes/UI/Templates/UpgradeDesc.tres" id="4_rruh3"]
+[ext_resource type="PackedScene" uid="uid://bwp1ih2chikf4" path="res://Scenes/UI/buy_button.tscn" id="5_f702u"]
+[ext_resource type="PackedScene" uid="uid://4y7j6bhj10o7" path="res://Scenes/UI/strawberryUI.tscn" id="6_dpurk"]
+[ext_resource type="LabelSettings" uid="uid://dltsqqyendawn" path="res://Scenes/UI/Templates/price.tres" id="8_r68hc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqngo"]
 bg_color = Color(0.941176, 0.403922, 0.2, 1)

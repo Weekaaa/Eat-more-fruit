@@ -22,6 +22,11 @@ func _physics_process(delta):
 
 
 func _on_pick_up_range_body_entered(body):
+	if "track_player" in body:
+		body.track_player()
+
+
+func _on_collect_area_body_entered(body):
 	if "collected" in body:
 		if body.get_parent().name == 'Strawberry':
 			Globals.Strawberries += 1

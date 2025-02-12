@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c0lswl7o4nwjr"]
+[gd_scene load_steps=9 format=3 uid="uid://c0lswl7o4nwjr"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_h21yi"]
 [ext_resource type="Texture2D" uid="uid://box3lg3tkxpki" path="res://Assets/oldman_walk_sheet.png" id="1_oxs2o"]
@@ -6,6 +6,8 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0aulo"]
 radius = 15.0
 height = 46.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7kd5k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm5p3"]
 radius = 20.0
@@ -51,6 +53,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 4
 script = ExtResource("1_h21yi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -65,7 +68,16 @@ frame = 1
 visible = false
 shape = SubResource("CapsuleShape2D_0aulo")
 
+[node name="CollectArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="Area" type="CollisionShape2D" parent="CollectArea"]
+shape = SubResource("CircleShape2D_7kd5k")
+
 [node name="PickUpRange" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
 
 [node name="Range" type="CollisionShape2D" parent="PickUpRange"]
 shape = SubResource("CapsuleShape2D_nm5p3")
@@ -76,4 +88,5 @@ libraries = {
 "": SubResource("AnimationLibrary_78tqc")
 }
 
+[connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
