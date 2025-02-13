@@ -584,12 +584,18 @@ scale = Vector2(0.135417, 0.135417)
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="StrawberryTimer" type="Timer" parent="."]
+[node name="StrawberryTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
+autostart = true
+
+[node name="CherryTimer" type="Timer" parent="Timers"]
+unique_name_in_owner = true
+wait_time = 5.0
 autostart = true
 
 [connection signal="purchase_range" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_range"]
 [connection signal="purchase_rate" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_rate"]
 [connection signal="purchase_speed" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_speed"]
 [connection signal="pressed" from="Control/Shops/StrawberryShopButton" to="." method="_on_strawberry_shop_button_pressed"]
-[connection signal="timeout" from="StrawberryTimer" to="." method="_on_strawberry_timer_timeout"]
+[connection signal="timeout" from="Timers/StrawberryTimer" to="." method="_on_strawberry_timer_timeout"]
+[connection signal="timeout" from="Timers/CherryTimer" to="." method="_on_cherry_timer_timeout"]

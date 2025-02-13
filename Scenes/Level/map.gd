@@ -18,7 +18,6 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	
 	var fruit = fruit_type.instantiate()
 	fruit.global_position = random_pos
-	fruit.get_node("AnimationPlayer").play("Spawn")
 	
 	if fruit_name == 'Strawberry':
 		$Fruits/Strawberry.add_child(fruit)
@@ -32,6 +31,9 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 func _on_strawberry_timer_timeout():
 	if Globals.entities < 100:
 		_spawn_fruit(Strawberry, 'Strawberry')
+
+func _on_cherry_timer_timeout():
+	_spawn_fruit(Cherry, 'Cherry')
 
 func _on_strawberry_shop_button_pressed():
 	$Control/StrawberryShop.visible = !($Control/StrawberryShop.visible)

@@ -7,6 +7,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxnmr"]
 size = Vector2(120, 110)
 
+[sub_resource type="Animation" id="Animation_ggfml"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
 [sub_resource type="Animation" id="Animation_ll0ag"]
 resource_name = "Spawn"
 length = 0.44
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1.4, 1.4), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_ggfml"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Image:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fkkdj"]
@@ -64,3 +64,4 @@ frame = 1
 libraries = {
 "": SubResource("AnimationLibrary_fkkdj")
 }
+autoplay = "Spawn"
