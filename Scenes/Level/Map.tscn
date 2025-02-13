@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://4y7j6bhj10o7" path="res://Scenes/UI/strawberryUI.tscn" id="5_xjanq"]
 [ext_resource type="FontFile" uid="uid://dwtw786qbm6b7" path="res://Assets/MinecraftStandard.otf" id="6_ce8c5"]
 [ext_resource type="StyleBox" uid="uid://clp3m7u48ybq6" path="res://Scenes/UI/Templates/buttons_template.tres" id="7_1t068"]
-[ext_resource type="PackedScene" uid="uid://bnnjettts1l5q" path="res://Assets/Ui/Shops/StrawShop.tscn" id="8_ccw6f"]
+[ext_resource type="PackedScene" uid="uid://bnnjettts1l5q" path="res://Scenes/UI/StrawShop.tscn" id="8_ccw6f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u60wp"]
 texture = ExtResource("1_iy6mj")

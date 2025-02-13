@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bnnjettts1l5q"]
 
 [ext_resource type="Texture2D" uid="uid://b62bi4bqslsar" path="res://Assets/Ui/Theme/nine_path_3.png" id="1_bn63n"]
-[ext_resource type="Script" path="res://Assets/Ui/Shops/straw_shop.gd" id="1_dl5ys"]
+[ext_resource type="Script" path="res://Scenes/UI/straw_shop.gd" id="1_dl5ys"]
 [ext_resource type="FontFile" uid="uid://dwtw786qbm6b7" path="res://Assets/MinecraftStandard.otf" id="2_pn3jg"]
 [ext_resource type="LabelSettings" uid="uid://cg820l4knx6rb" path="res://Scenes/UI/Templates/UpgradeName.tres" id="3_hdreg"]
 [ext_resource type="LabelSettings" uid="uid://df8dgdyhpyros" path="res://Scenes/UI/Templates/UpgradeDesc.tres" id="4_rruh3"]

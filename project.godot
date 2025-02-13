@@ -61,6 +61,7 @@ down={
 2d_physics/layer_3="Borders"
 2d_physics/layer_4="CollectArea"
 2d_physics/layer_5="PickUpRange"
+2d_physics/layer_6="CherryBlast"
 
 [rendering]
 
