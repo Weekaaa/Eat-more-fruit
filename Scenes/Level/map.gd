@@ -3,11 +3,30 @@ extends Node2D
 @onready var Strawberry: PackedScene = preload("res://Scenes/Fruits/strawberry.tscn")
 @onready var Cherry: PackedScene = preload("res://Scenes/Fruits/cherry.tscn")
 @onready var Grape: PackedScene = preload("res://Scenes/Fruits/grape.tscn")
+var max_size: int = 1
+var scale_options = [
+	{"scale": Vector2(0.1, 0.1), "weight": 87},  # 87% chance (87/100)
+	{"scale": Vector2(0.15, 0.15), "weight": 12},  # 12% chance (12/100)
+	{"scale": Vector2(0.25, 0.25), "weight": 1}   # 1% chance (1/100)
+]
 
 func _process(_delta):
 	if int(%StrCount.text) != Globals.Strawberries:
 		%StrCount.text = Globals.fix_nums(Globals.Strawberries)
+
+func get_random_scale(max_options: int = -1):
+	var effective_max = scale_options.size() if max_options <= 0 else min(max_options, scale_options.size())
+	var total_weight = 0
+	for i in range(effective_max):
+		total_weight += scale_options[i].weight
 	
+	var random_value = randf_range(0, total_weight)
+	var cumulative_weight = 0.0
+	for i in range(effective_max):
+		cumulative_weight += scale_options[i].weight
+		if random_value <= cumulative_weight:
+			return [scale_options[i].scale, i]
+
 func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	var min_spawn_area = $SpawnLocations/Marker2D.global_position
 	var max_spawn_area = $SpawnLocations/Marker2D2.global_position
@@ -20,6 +39,9 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	fruit.global_position = random_pos
 	
 	if fruit_name == 'Strawberry':
+		var traits = get_random_scale(max_size)
+		fruit.gain = (traits[1] + 1) ** 2
+		fruit.scale = traits[0]
 		$Fruits/Strawberry.add_child(fruit)
 	elif fruit_name == 'Grape':
 		$Fruits/Grape.add_child(fruit)
@@ -60,10 +82,9 @@ func _on_strawberry_shop_purchase_speed():
 	Globals.SpeedPrice *= 2
 
 func _on_strawberry_shop_purchase_size():
-	# Implement random size mechanic
+	max_size += 1
 	Globals.Strawberries -= Globals.SizePrice
 	Globals.SizePrice *= 10
-
 
 #===========================================================#
 
