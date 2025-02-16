@@ -31,4 +31,3 @@ func _on_collect_area_body_entered(body):
 		if body.get_parent().name == 'Strawberry':
 			Globals.Strawberries += 1
 		body.collected()
-		Globals.entities -= 1

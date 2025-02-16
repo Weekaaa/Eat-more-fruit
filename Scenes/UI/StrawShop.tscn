@@ -220,6 +220,63 @@ label_settings = ExtResource("8_r68hc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HSeparator3" type="HSeparator" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxFlat_bqngo")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 230
+
+[node name="SizeDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="SizeTitle" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/SizeDetails"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_pn3jg")
+theme_override_font_sizes/font_size = 18
+text = "FRUIT SIZE (0/2)"
+label_settings = ExtResource("3_hdreg")
+
+[node name="SizeDesc" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/SizeDetails"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Increases the chance for a fruit to be bigger."
+label_settings = ExtResource("4_rruh3")
+
+[node name="SizeButton" parent="NinePatchRect/VBoxContainer/HBoxContainer4" instance=ExtResource("5_f702u")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer4/SizeButton" instance=ExtResource("6_dpurk")]
+position = Vector2(-97, -4)
+scale = Vector2(0.333333, 0.333333)
+
+[node name="SizePrice" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/SizeButton"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -12.0
+offset_right = 20.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("8_r68hc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/SpeedButton" to="." method="_on_speed_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer2/RateButton" to="." method="_on_rate_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer3/RangeButton" to="." method="_on_range_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer4/SizeButton" to="." method="_on_size_button_button_pressed"]

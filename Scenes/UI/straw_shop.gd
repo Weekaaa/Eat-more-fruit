@@ -3,6 +3,7 @@ extends Control
 signal purchase_speed
 signal purchase_rate
 signal purchase_range
+signal purchase_size
 
 var upgrade_prices = [Globals.SpeedPrice, Globals.RatePrice, Globals.RangePrice]
 var disabled_text: Color = Color("b8b8b8")
@@ -29,12 +30,20 @@ func _process(_delta):
 	else:
 		%RangeButton.get_child(0).disabled = false
 		%RangePrice.modulate = enabled_text
+		
+	if Globals.Strawberries < Globals.SizePrice:
+		%SizeButton.get_child(0).disabled = true
+		%SizePrice.modulate = disabled_text
+	else:
+		%SizeButton.get_child(0).disabled = false
+		%SizePrice.modulate = enabled_text
 
 
 func _ready():
-	%SpeedPrice.text = str(Globals.SpeedPrice)
-	%RatePrice.text = str(Globals.RatePrice)
-	%RangePrice.text = str(Globals.RangePrice)
+	%SpeedPrice.text = Globals.fix_nums(Globals.SpeedPrice)
+	%RatePrice.text = Globals.fix_nums(Globals.RatePrice)
+	%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
+	%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
 
 func _on_speed_button_button_pressed():
 	purchase_speed.emit()
@@ -51,5 +60,11 @@ func _on_rate_button_button_pressed():
 func _on_range_button_button_pressed():
 	purchase_range.emit()
 	Globals.RangeUpgCount += 1
-	%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
 	%RangeTitle.text = "GRAB RANGE (" + str(Globals.RangeUpgCount) + "/20)"
+	%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
+
+func _on_size_button_button_pressed():
+	purchase_size.emit()
+	Globals.SizeUpgCount += 1
+	%SizeTitle.text = "FRUIT SIZE (" + str(Globals.SizeUpgCount) + "/2)"
+	%SizePrice.text = Globals.fix_nums(Globals.SizePrice)

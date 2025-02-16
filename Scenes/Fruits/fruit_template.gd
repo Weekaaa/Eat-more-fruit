@@ -19,4 +19,5 @@ func track_player():
 	follow_target = true
 
 func collected():
+	Globals.entities -= 1
 	queue_free()

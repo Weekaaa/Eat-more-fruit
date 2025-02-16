@@ -24,6 +24,7 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	elif fruit_name == 'Grape':
 		$Fruits/Grape.add_child(fruit)
 	elif fruit_name == 'Cherry':
+		fruit.connect('drop_fruits', _on_cherry_drop_fruits)
 		$Fruits/Cherry.add_child(fruit)
 		
 	Globals.entities += 1
@@ -33,7 +34,8 @@ func _on_strawberry_timer_timeout():
 		_spawn_fruit(Strawberry, 'Strawberry')
 
 func _on_cherry_timer_timeout():
-	_spawn_fruit(Cherry, 'Cherry')
+	if Globals.entities > 30:
+		_spawn_fruit(Cherry, 'Cherry')
 
 func _on_strawberry_shop_button_pressed():
 	$Control/StrawberryShop.visible = !($Control/StrawberryShop.visible)
@@ -43,19 +45,32 @@ func _on_strawberry_shop_button_pressed():
 #===========================================================#
 
 func _on_strawberry_shop_purchase_range():
-	if Globals.Strawberries >= Globals.RangePrice:
-		$Player.get_child(2).scale *= 1.1
-		Globals.Strawberries -= Globals.RangePrice
-		Globals.RangePrice *= 2
+	$Player.get_child(2).scale *= 1.1
+	Globals.Strawberries -= Globals.RangePrice
+	Globals.RangePrice *= 2
 
 func _on_strawberry_shop_purchase_rate():
-	if Globals.Strawberries >= Globals.RatePrice:
-		$StrawberryTimer.wait_time -= 0.05
-		Globals.Strawberries -= Globals.RatePrice
-		Globals.RatePrice *= 2
+	%StrawberryTimer.wait_time -= 0.05
+	Globals.Strawberries -= Globals.RatePrice
+	Globals.RatePrice *= 2
 
 func _on_strawberry_shop_purchase_speed():
-	if Globals.Strawberries >= Globals.SpeedPrice:
-		$Player.speed += 20
-		Globals.Strawberries -= Globals.SpeedPrice
-		Globals.SpeedPrice *= 2
+	$Player.speed += 20
+	Globals.Strawberries -= Globals.SpeedPrice
+	Globals.SpeedPrice *= 2
+
+func _on_strawberry_shop_purchase_size():
+	# Implement random size mechanic
+	Globals.Strawberries -= Globals.SizePrice
+	Globals.SizePrice *= 10
+
+
+#===========================================================#
+
+func _on_cherry_drop_fruits(amount):
+	%fruit_loss.self_modulate = Color('ffffff')
+	%fruit_loss.text = '-' + Globals.fix_nums(amount)
+	var tween = create_tween()
+	tween.tween_property(%fruit_loss, 'self_modulate', Color('ffffff00'), 2)
+	await get_tree().create_timer(2).timeout
+	%fruit_loss.text = ''

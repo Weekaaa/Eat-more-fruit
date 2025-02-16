@@ -8,11 +8,13 @@ var Strawberries: int = 200
 var SpeedUpgCount: int = 0
 var RateUpgCount: int = 0
 var RangeUpgCount: int = 0
+var SizeUpgCount: int = 0
 
 # upgrade prices
 var SpeedPrice: int = 50
 var RatePrice: int = 100
 var RangePrice: int = 75
+var SizePrice: int = 1000
 
 func fix_nums(num):
 	var suffixes = ["", "K", "M", "B", "T"]
