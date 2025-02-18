@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dki53nnxv276"]
+
+[ext_resource type="Texture2D" uid="uid://bvs76i42pah4d" path="res://Assets/fruit union/ui.png" id="1_u830v"]
+
+[node name="UI" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_u830v")
+hframes = 13
+vframes = 3
+frame = 3

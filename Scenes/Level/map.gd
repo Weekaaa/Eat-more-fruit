@@ -13,6 +13,8 @@ var scale_options = [
 func _process(_delta):
 	if int(%StrCount.text) != Globals.Strawberries:
 		%StrCount.text = Globals.fix_nums(Globals.Strawberries)
+	if int(%GrpCount.text) != Globals.Grapes:
+		%GrpCount.text = Globals.fix_nums(Globals.Grapes)
 
 func get_random_scale(max_options: int = -1):
 	var effective_max = scale_options.size() if max_options <= 0 else min(max_options, scale_options.size())
@@ -36,14 +38,16 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	)
 	
 	var fruit = fruit_type.instantiate()
+	var traits = get_random_scale(max_size)
 	fruit.global_position = random_pos
 	
 	if fruit_name == 'Strawberry':
-		var traits = get_random_scale(max_size)
 		fruit.gain = (traits[1] + 1) ** 2
 		fruit.scale = traits[0]
 		$Fruits/Strawberry.add_child(fruit)
 	elif fruit_name == 'Grape':
+		fruit.gain = (traits[1] + 1) ** 2
+		fruit.scale = traits[0]
 		$Fruits/Grape.add_child(fruit)
 	elif fruit_name == 'Cherry':
 		fruit.connect('drop_fruits', _on_cherry_drop_fruits)
@@ -59,8 +63,18 @@ func _on_cherry_timer_timeout():
 	if Globals.entities > 30:
 		_spawn_fruit(Cherry, 'Cherry')
 
+func _on_grape_timer_timeout():
+	if Globals.entities < 100:
+		_spawn_fruit(Grape, 'Grape')
+
+
 func _on_strawberry_shop_button_pressed():
-	$Control/StrawberryShop.visible = !($Control/StrawberryShop.visible)
+	%StrawberryShop.visible = !(%StrawberryShop.visible)
+	%GrapeShop.visible = false
+
+func _on_grape_shop_button_pressed():
+	%GrapeShop.visible = !(%GrapeShop.visible)
+	%StrawberryShop.visible = false
 
 #===========================================================#
 #-----------------------SHOP-BUTTONS------------------------#

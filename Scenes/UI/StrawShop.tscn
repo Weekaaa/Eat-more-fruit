@@ -8,10 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bwp1ih2chikf4" path="res://Scenes/UI/buy_button.tscn" id="5_f702u"]
 [ext_resource type="PackedScene" uid="uid://4y7j6bhj10o7" path="res://Scenes/UI/strawberryUI.tscn" id="6_dpurk"]
 [ext_resource type="LabelSettings" uid="uid://dltsqqyendawn" path="res://Scenes/UI/Templates/price.tres" id="8_r68hc"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqngo"]
-bg_color = Color(0.941176, 0.403922, 0.2, 1)
-border_color = Color(0.941176, 0.403922, 0.2, 1)
+[ext_resource type="StyleBox" uid="uid://cceuk3ryyk8eu" path="res://Scenes/UI/Templates/seperatorH.tres" id="9_yeq7a"]
 
 [node name="StrawberryShop" type="Control"]
 layout_mode = 3
@@ -42,7 +39,7 @@ texture = ExtResource("1_bn63n")
 patch_margin_left = 6
 patch_margin_top = 6
 patch_margin_right = 6
-patch_margin_bottom = 5
+patch_margin_bottom = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
 layout_mode = 1
@@ -57,15 +54,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 11
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="Speed" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 288
 
-[node name="SpeedDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer"]
+[node name="SpeedDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Speed"]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="SpeedTitle" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/SpeedDetails"]
+[node name="SpeedTitle" type="Label" parent="NinePatchRect/VBoxContainer/Speed/SpeedDetails"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -74,22 +71,22 @@ theme_override_font_sizes/font_size = 18
 text = "SPEED (0/30)"
 label_settings = ExtResource("3_hdreg")
 
-[node name="SpeedDesc" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/SpeedDetails"]
+[node name="SpeedDesc" type="Label" parent="NinePatchRect/VBoxContainer/Speed/SpeedDetails"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Increases the player's movement speed."
 label_settings = ExtResource("4_rruh3")
 
-[node name="SpeedButton" parent="NinePatchRect/VBoxContainer/HBoxContainer" instance=ExtResource("5_f702u")]
+[node name="SpeedButton" parent="NinePatchRect/VBoxContainer/Speed" instance=ExtResource("5_f702u")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer/SpeedButton" instance=ExtResource("6_dpurk")]
+[node name="Ui" parent="NinePatchRect/VBoxContainer/Speed/SpeedButton" instance=ExtResource("6_dpurk")]
 position = Vector2(-97, -4)
 scale = Vector2(0.333333, 0.333333)
 
-[node name="SpeedPrice" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer/SpeedButton"]
+[node name="SpeedPrice" type="Label" parent="NinePatchRect/VBoxContainer/Speed/SpeedButton"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -111,17 +108,17 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 5
-theme_override_styles/separator = SubResource("StyleBoxFlat_bqngo")
+theme_override_styles/separator = ExtResource("9_yeq7a")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="Rate" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 228
 
-[node name="RateDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer2"]
+[node name="RateDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Rate"]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="RateTitle" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/RateDetails"]
+[node name="RateTitle" type="Label" parent="NinePatchRect/VBoxContainer/Rate/RateDetails"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -130,22 +127,22 @@ theme_override_font_sizes/font_size = 18
 text = "SPAWN RATE (0/15)"
 label_settings = ExtResource("3_hdreg")
 
-[node name="RateDesc" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/RateDetails"]
+[node name="RateDesc" type="Label" parent="NinePatchRect/VBoxContainer/Rate/RateDetails"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Increase the rate at which strawberies spawn."
 label_settings = ExtResource("4_rruh3")
 
-[node name="RateButton" parent="NinePatchRect/VBoxContainer/HBoxContainer2" instance=ExtResource("5_f702u")]
+[node name="RateButton" parent="NinePatchRect/VBoxContainer/Rate" instance=ExtResource("5_f702u")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer2/RateButton" instance=ExtResource("6_dpurk")]
+[node name="Ui" parent="NinePatchRect/VBoxContainer/Rate/RateButton" instance=ExtResource("6_dpurk")]
 position = Vector2(-97, -4)
 scale = Vector2(0.333333, 0.333333)
 
-[node name="RatePrice" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer2/RateButton"]
+[node name="RatePrice" type="Label" parent="NinePatchRect/VBoxContainer/Rate/RateButton"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -167,17 +164,17 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 5
-theme_override_styles/separator = SubResource("StyleBoxFlat_bqngo")
+theme_override_styles/separator = ExtResource("9_yeq7a")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="Range" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 261
 
-[node name="RangeDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer3"]
+[node name="RangeDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Range"]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="RangeTitle" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer3/RangeDetails"]
+[node name="RangeTitle" type="Label" parent="NinePatchRect/VBoxContainer/Range/RangeDetails"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -186,23 +183,23 @@ theme_override_font_sizes/font_size = 18
 text = "GRAB RANGE (0/20)"
 label_settings = ExtResource("3_hdreg")
 
-[node name="RangeDesc" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer3/RangeDetails"]
+[node name="RangeDesc" type="Label" parent="NinePatchRect/VBoxContainer/Range/RangeDetails"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Expands the radius at which the player can
 grab fruits."
 label_settings = ExtResource("4_rruh3")
 
-[node name="RangeButton" parent="NinePatchRect/VBoxContainer/HBoxContainer3" instance=ExtResource("5_f702u")]
+[node name="RangeButton" parent="NinePatchRect/VBoxContainer/Range" instance=ExtResource("5_f702u")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer3/RangeButton" instance=ExtResource("6_dpurk")]
+[node name="Ui" parent="NinePatchRect/VBoxContainer/Range/RangeButton" instance=ExtResource("6_dpurk")]
 position = Vector2(-97, -4)
 scale = Vector2(0.333333, 0.333333)
 
-[node name="RangePrice" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer3/RangeButton"]
+[node name="RangePrice" type="Label" parent="NinePatchRect/VBoxContainer/Range/RangeButton"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -224,17 +221,17 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 5
-theme_override_styles/separator = SubResource("StyleBoxFlat_bqngo")
+theme_override_styles/separator = ExtResource("9_yeq7a")
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+[node name="Size" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 230
 
-[node name="SizeDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/HBoxContainer4"]
+[node name="SizeDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Size"]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="SizeTitle" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/SizeDetails"]
+[node name="SizeTitle" type="Label" parent="NinePatchRect/VBoxContainer/Size/SizeDetails"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 8
@@ -243,22 +240,22 @@ theme_override_font_sizes/font_size = 18
 text = "FRUIT SIZE (0/2)"
 label_settings = ExtResource("3_hdreg")
 
-[node name="SizeDesc" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/SizeDetails"]
+[node name="SizeDesc" type="Label" parent="NinePatchRect/VBoxContainer/Size/SizeDetails"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "Increases the chance for a fruit to be bigger."
 label_settings = ExtResource("4_rruh3")
 
-[node name="SizeButton" parent="NinePatchRect/VBoxContainer/HBoxContainer4" instance=ExtResource("5_f702u")]
+[node name="SizeButton" parent="NinePatchRect/VBoxContainer/Size" instance=ExtResource("5_f702u")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="Ui" parent="NinePatchRect/VBoxContainer/HBoxContainer4/SizeButton" instance=ExtResource("6_dpurk")]
+[node name="Ui" parent="NinePatchRect/VBoxContainer/Size/SizeButton" instance=ExtResource("6_dpurk")]
 position = Vector2(-97, -4)
 scale = Vector2(0.333333, 0.333333)
 
-[node name="SizePrice" type="Label" parent="NinePatchRect/VBoxContainer/HBoxContainer4/SizeButton"]
+[node name="SizePrice" type="Label" parent="NinePatchRect/VBoxContainer/Size/SizeButton"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -276,7 +273,7 @@ label_settings = ExtResource("8_r68hc")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer/SpeedButton" to="." method="_on_speed_button_button_pressed"]
-[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer2/RateButton" to="." method="_on_rate_button_button_pressed"]
-[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer3/RangeButton" to="." method="_on_range_button_button_pressed"]
-[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/HBoxContainer4/SizeButton" to="." method="_on_size_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/Speed/SpeedButton" to="." method="_on_speed_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/Rate/RateButton" to="." method="_on_rate_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/Range/RangeButton" to="." method="_on_range_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/Size/SizeButton" to="." method="_on_size_button_button_pressed"]

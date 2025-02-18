@@ -5,7 +5,6 @@ signal purchase_rate
 signal purchase_range
 signal purchase_size
 
-var upgrade_prices = [Globals.SpeedPrice, Globals.RatePrice, Globals.RangePrice]
 var disabled_text: Color = Color("b8b8b8")
 var enabled_text: Color = Color("ffffff")
 

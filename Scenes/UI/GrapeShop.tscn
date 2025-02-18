@@ -1,0 +1,234 @@
+[gd_scene load_steps=9 format=3 uid="uid://bk4jd7ub0p3er"]
+
+[ext_resource type="Texture2D" uid="uid://b62bi4bqslsar" path="res://Assets/Ui/Theme/nine_path_3.png" id="1_6wqrt"]
+[ext_resource type="Script" path="res://Scenes/UI/grape_shop.gd" id="1_q52jy"]
+[ext_resource type="LabelSettings" uid="uid://cg820l4knx6rb" path="res://Scenes/UI/Templates/UpgradeName.tres" id="2_s7048"]
+[ext_resource type="LabelSettings" uid="uid://df8dgdyhpyros" path="res://Scenes/UI/Templates/UpgradeDesc.tres" id="3_ngci3"]
+[ext_resource type="PackedScene" uid="uid://bwp1ih2chikf4" path="res://Scenes/UI/buy_button.tscn" id="4_14qm7"]
+[ext_resource type="PackedScene" uid="uid://dki53nnxv276" path="res://Scenes/UI/grapeUI.tscn" id="5_r8ryo"]
+[ext_resource type="StyleBox" uid="uid://cceuk3ryyk8eu" path="res://Scenes/UI/Templates/seperatorH.tres" id="6_01bgf"]
+[ext_resource type="LabelSettings" uid="uid://dltsqqyendawn" path="res://Scenes/UI/Templates/price.tres" id="6_l4uyh"]
+
+[node name="GrapeShop" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_q52jy")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -401.0
+offset_top = -216.0
+offset_right = 399.0
+offset_bottom = 216.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6wqrt")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = 26.0
+offset_right = -31.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 11
+
+[node name="Gain" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 173
+
+[node name="GainDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Gain"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="GainTitle" type="Label" parent="NinePatchRect/VBoxContainer/Gain/GainDetails"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "GAIN (0/10)"
+label_settings = ExtResource("2_s7048")
+
+[node name="GainDesc" type="Label" parent="NinePatchRect/VBoxContainer/Gain/GainDetails"]
+layout_mode = 2
+text = "Multiples the amount of fruits gained from collection."
+label_settings = ExtResource("3_ngci3")
+
+[node name="GainButton" parent="NinePatchRect/VBoxContainer/Gain" instance=ExtResource("4_14qm7")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="UI" parent="NinePatchRect/VBoxContainer/Gain/GainButton" instance=ExtResource("5_r8ryo")]
+position = Vector2(-97, -4)
+scale = Vector2(0.333, 0.333)
+
+[node name="GainPrice" type="Label" parent="NinePatchRect/VBoxContainer/Gain/GainButton"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -27.0
+offset_top = -12.0
+offset_right = 28.0
+offset_bottom = 12.0
+label_settings = ExtResource("6_l4uyh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("6_01bgf")
+
+[node name="Extra" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 179
+
+[node name="ExtraDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Extra"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="ExtraTitle" type="Label" parent="NinePatchRect/VBoxContainer/Extra/ExtraDetails"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "EXTRA SPAWNS (0/10)"
+label_settings = ExtResource("2_s7048")
+
+[node name="ExtraDesc" type="Label" parent="NinePatchRect/VBoxContainer/Extra/ExtraDetails"]
+layout_mode = 2
+text = "Increases the chance of multiple fruits spawning at
+the same time."
+label_settings = ExtResource("3_ngci3")
+
+[node name="ExtraButton" parent="NinePatchRect/VBoxContainer/Extra" instance=ExtResource("4_14qm7")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="UI" parent="NinePatchRect/VBoxContainer/Extra/ExtraButton" instance=ExtResource("5_r8ryo")]
+position = Vector2(-97, -4)
+scale = Vector2(0.333, 0.333)
+
+[node name="ExtraPrice" type="Label" parent="NinePatchRect/VBoxContainer/Extra/ExtraButton"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -27.0
+offset_top = -12.0
+offset_right = 27.0
+offset_bottom = 12.0
+label_settings = ExtResource("6_l4uyh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("6_01bgf")
+
+[node name="Grate" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 264
+
+[node name="GrateDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Grate"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="GrateTitle" type="Label" parent="NinePatchRect/VBoxContainer/Grate/GrateDetails"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SPAWN RATE (0/15)"
+label_settings = ExtResource("2_s7048")
+
+[node name="GrateDesc" type="Label" parent="NinePatchRect/VBoxContainer/Grate/GrateDetails"]
+layout_mode = 2
+text = "Increases the rate at which grapes spawn."
+label_settings = ExtResource("3_ngci3")
+
+[node name="GrateButton" parent="NinePatchRect/VBoxContainer/Grate" instance=ExtResource("4_14qm7")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="UI" parent="NinePatchRect/VBoxContainer/Grate/GrateButton" instance=ExtResource("5_r8ryo")]
+position = Vector2(-97, -4)
+scale = Vector2(0.333, 0.333)
+
+[node name="GratePrice" type="Label" parent="NinePatchRect/VBoxContainer/Grate/GrateButton"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -32.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 12.0
+label_settings = ExtResource("6_l4uyh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("6_01bgf")
+
+[node name="Ghosts" type="HBoxContainer" parent="NinePatchRect/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 238
+
+[node name="GhostsDetails" type="VBoxContainer" parent="NinePatchRect/VBoxContainer/Ghosts"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="GhostsTitle" type="Label" parent="NinePatchRect/VBoxContainer/Ghosts/GhostsDetails"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "AUTO COLLECT (0/10)"
+label_settings = ExtResource("2_s7048")
+
+[node name="GhostsDesc" type="Label" parent="NinePatchRect/VBoxContainer/Ghosts/GhostsDetails"]
+layout_mode = 2
+text = "Spawns ghosts that assist in collecting fruits."
+label_settings = ExtResource("3_ngci3")
+
+[node name="GhostsButton" parent="NinePatchRect/VBoxContainer/Ghosts" instance=ExtResource("4_14qm7")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="UI" parent="NinePatchRect/VBoxContainer/Ghosts/GhostsButton" instance=ExtResource("5_r8ryo")]
+position = Vector2(-97, -4)
+scale = Vector2(0.333, 0.333)
+
+[node name="GhostsPrice" type="Label" parent="NinePatchRect/VBoxContainer/Ghosts/GhostsButton"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -33.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 12.0
+label_settings = ExtResource("6_l4uyh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/Gain/GainButton" to="." method="_on_gain_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/Extra/ExtraButton" to="." method="_on_extra_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/Grate/GrateButton" to="." method="_on_grate_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/VBoxContainer/Ghosts/GhostsButton" to="." method="_on_ghosts_button_button_pressed"]
