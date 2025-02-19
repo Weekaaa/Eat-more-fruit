@@ -2,8 +2,8 @@ extends Node
 
 # player collectables
 var entities: int = 0
-var Strawberries: int = 200
-var Grapes: int = 0
+var Strawberries: int = 0
+var Grapes: int = 2000
 
 # upgrade counts
 var SpeedUpgCount: int = 0

@@ -8,29 +8,30 @@ signal purchase_size
 var disabled_text: Color = Color("b8b8b8")
 var enabled_text: Color = Color("ffffff")
 
+
 func _process(_delta):
-	if Globals.Strawberries < Globals.SpeedPrice:
+	if Globals.Strawberries < Globals.SpeedPrice or Globals.SpeedUpgCount >= 30:
 		%SpeedButton.get_child(0).disabled = true
 		%SpeedPrice.modulate = disabled_text
 	else:
 		%SpeedButton.get_child(0).disabled = false
 		%SpeedPrice.modulate = enabled_text
 		
-	if Globals.Strawberries < Globals.RatePrice:
+	if Globals.Strawberries < Globals.RatePrice or Globals.RateUpgCount >= 15:
 		%RateButton.get_child(0).disabled = true
 		%RatePrice.modulate = disabled_text
 	else:
 		%RateButton.get_child(0).disabled = false
 		%RatePrice.modulate = enabled_text
 		
-	if Globals.Strawberries < Globals.RangePrice:
+	if Globals.Strawberries < Globals.RangePrice or Globals.RangeUpgCount >= 20:
 		%RangeButton.get_child(0).disabled = true
 		%RangePrice.modulate = disabled_text
 	else:
 		%RangeButton.get_child(0).disabled = false
 		%RangePrice.modulate = enabled_text
 		
-	if Globals.Strawberries < Globals.SizePrice:
+	if Globals.Strawberries < Globals.SizePrice or Globals.SizeUpgCount >= 2:
 		%SizeButton.get_child(0).disabled = true
 		%SizePrice.modulate = disabled_text
 	else:

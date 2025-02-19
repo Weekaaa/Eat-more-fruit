@@ -4,10 +4,18 @@ extends Node2D
 @onready var Cherry: PackedScene = preload("res://Scenes/Fruits/cherry.tscn")
 @onready var Grape: PackedScene = preload("res://Scenes/Fruits/grape.tscn")
 var max_size: int = 1
+var max_spawns: int = 1
 var scale_options = [
 	{"scale": Vector2(0.1, 0.1), "weight": 87},  # 87% chance (87/100)
 	{"scale": Vector2(0.15, 0.15), "weight": 12},  # 12% chance (12/100)
 	{"scale": Vector2(0.25, 0.25), "weight": 1}   # 1% chance (1/100)
+]
+var extra_spawns = [
+	{"amount": 1, "weight": 83},
+	{"amount": 2, "weight": 12},
+	{"amount": 3, "weight": 4},
+	{"amount": 4, "weight": 0.9},
+	{"amount": 5, "weight": 0.1}
 ]
 
 func _process(_delta):
@@ -16,18 +24,29 @@ func _process(_delta):
 	if int(%GrpCount.text) != Globals.Grapes:
 		%GrpCount.text = Globals.fix_nums(Globals.Grapes)
 
-func get_random_scale(max_options: int = -1):
-	var effective_max = scale_options.size() if max_options <= 0 else min(max_options, scale_options.size())
+func get_random_scale(max_options):
 	var total_weight = 0
-	for i in range(effective_max):
+	for i in range(max_options):
 		total_weight += scale_options[i].weight
 	
 	var random_value = randf_range(0, total_weight)
 	var cumulative_weight = 0.0
-	for i in range(effective_max):
+	for i in range(max_options):
 		cumulative_weight += scale_options[i].weight
 		if random_value <= cumulative_weight:
 			return [scale_options[i].scale, i]
+
+func get_random_spawns(max_options):
+	var total_weight = 0
+	for i in range(max_options):
+		total_weight += extra_spawns[i].weight
+	
+	var random_value = randf_range(0, total_weight)
+	var cumulative_weight = 0.0
+	for i in range(max_options):
+		cumulative_weight += extra_spawns[i].weight
+		if random_value <= cumulative_weight:
+			return extra_spawns[i].amount
 
 func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	var min_spawn_area = $SpawnLocations/Marker2D.global_position
@@ -40,13 +59,14 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	var fruit = fruit_type.instantiate()
 	var traits = get_random_scale(max_size)
 	fruit.global_position = random_pos
+	fruit.gain += Globals.GainUpgCount
 	
 	if fruit_name == 'Strawberry':
-		fruit.gain = (traits[1] + 1) ** 2
+		fruit.gain *= (traits[1] + 1) ** 2
 		fruit.scale = traits[0]
 		$Fruits/Strawberry.add_child(fruit)
 	elif fruit_name == 'Grape':
-		fruit.gain = (traits[1] + 1) ** 2
+		fruit.gain *= (traits[1] + 1) ** 2
 		fruit.scale = traits[0]
 		$Fruits/Grape.add_child(fruit)
 	elif fruit_name == 'Cherry':
@@ -55,9 +75,21 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 		
 	Globals.entities += 1
 
+func _update_gain():
+	for fruit in $Fruits/Strawberry.get_children():
+		fruit.gain += Globals.GainUpgCount
+	for fruit in $Fruits/Grape.get_children():
+		fruit.gain += Globals.GainUpgCount
+
+#===========================================================#
+#--------------------------TIMERS---------------------------#
+#===========================================================#
+
 func _on_strawberry_timer_timeout():
 	if Globals.entities < 100:
-		_spawn_fruit(Strawberry, 'Strawberry')
+		for i in range(get_random_spawns(max_spawns)):
+			_spawn_fruit(Strawberry, 'Strawberry')
+			await get_tree().create_timer(0.1).timeout
 
 func _on_cherry_timer_timeout():
 	if Globals.entities > 30:
@@ -65,8 +97,13 @@ func _on_cherry_timer_timeout():
 
 func _on_grape_timer_timeout():
 	if Globals.entities < 100:
-		_spawn_fruit(Grape, 'Grape')
+		for i in range(get_random_spawns(max_spawns)):
+			_spawn_fruit(Grape, 'Grape')
+			await get_tree().create_timer(0.1).timeout
 
+#===========================================================#
+#-----------------------SHOP-BUTTONS------------------------#
+#===========================================================#
 
 func _on_strawberry_shop_button_pressed():
 	%StrawberryShop.visible = !(%StrawberryShop.visible)
@@ -77,7 +114,7 @@ func _on_grape_shop_button_pressed():
 	%StrawberryShop.visible = false
 
 #===========================================================#
-#-----------------------SHOP-BUTTONS------------------------#
+#----------------------UPGRADE-BUTTONS----------------------#
 #===========================================================#
 
 func _on_strawberry_shop_purchase_range():
@@ -86,7 +123,7 @@ func _on_strawberry_shop_purchase_range():
 	Globals.RangePrice *= 2
 
 func _on_strawberry_shop_purchase_rate():
-	%StrawberryTimer.wait_time -= 0.05
+	%StrawberryTimer.wait_time *= 0.9
 	Globals.Strawberries -= Globals.RatePrice
 	Globals.RatePrice *= 2
 
@@ -99,6 +136,21 @@ func _on_strawberry_shop_purchase_size():
 	max_size += 1
 	Globals.Strawberries -= Globals.SizePrice
 	Globals.SizePrice *= 10
+
+func _on_grape_shop_purchase_extra():
+	max_spawns += 1
+	Globals.Grapes -= Globals.ExtraPrice
+
+func _on_grape_shop_purchase_gain():
+	_update_gain()
+	Globals.Grapes -= Globals.GainPrice
+
+func _on_grape_shop_purchase_ghosts():
+	Globals.Grapes -= Globals.GhostsPrice
+
+func _on_grape_shop_purchase_grate():
+	%GrapeTimer.wait_time *= 0.9
+	Globals.Grapes -= Globals.GratePrice
 
 #===========================================================#
 

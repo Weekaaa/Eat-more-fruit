@@ -63,3 +63,4 @@ frame = 2
 libraries = {
 "": SubResource("AnimationLibrary_lheau")
 }
+autoplay = "Spawn"

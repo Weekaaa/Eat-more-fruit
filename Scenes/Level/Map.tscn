@@ -489,9 +489,9 @@ tile_set = SubResource("TileSet_hs0p5")
 
 [node name="Strawberry" type="Node2D" parent="Fruits"]
 
-[node name="Cherry" type="Node2D" parent="Fruits"]
-
 [node name="Grape" type="Node2D" parent="Fruits"]
+
+[node name="Cherry" type="Node2D" parent="Fruits"]
 
 [node name="Player" parent="." instance=ExtResource("2_wcei2")]
 position = Vector2(-10, -3)
@@ -644,11 +644,17 @@ autostart = true
 
 [node name="GrapeTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
+wait_time = 2.5
+autostart = true
 
 [connection signal="purchase_range" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_range"]
 [connection signal="purchase_rate" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_rate"]
 [connection signal="purchase_size" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_size"]
 [connection signal="purchase_speed" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_speed"]
+[connection signal="purchase_extra" from="Control/GrapeShop" to="." method="_on_grape_shop_purchase_extra"]
+[connection signal="purchase_gain" from="Control/GrapeShop" to="." method="_on_grape_shop_purchase_gain"]
+[connection signal="purchase_ghosts" from="Control/GrapeShop" to="." method="_on_grape_shop_purchase_ghosts"]
+[connection signal="purchase_grate" from="Control/GrapeShop" to="." method="_on_grape_shop_purchase_grate"]
 [connection signal="pressed" from="Control/Shops/StrawberryShopButton" to="." method="_on_strawberry_shop_button_pressed"]
 [connection signal="pressed" from="Control/Shops/GrapeShopButton" to="." method="_on_grape_shop_button_pressed"]
 [connection signal="timeout" from="Timers/StrawberryTimer" to="." method="_on_strawberry_timer_timeout"]
