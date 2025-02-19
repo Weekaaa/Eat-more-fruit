@@ -3,6 +3,7 @@ extends Node2D
 @onready var Strawberry: PackedScene = preload("res://Scenes/Fruits/strawberry.tscn")
 @onready var Cherry: PackedScene = preload("res://Scenes/Fruits/cherry.tscn")
 @onready var Grape: PackedScene = preload("res://Scenes/Fruits/grape.tscn")
+@onready var Ghost: PackedScene = preload("res://Scenes/Player/ghost.tscn")
 var max_size: int = 1
 var max_spawns: int = 1
 var scale_options = [
@@ -146,6 +147,7 @@ func _on_grape_shop_purchase_gain():
 	Globals.Grapes -= Globals.GainPrice
 
 func _on_grape_shop_purchase_ghosts():
+	$Ghosts.add_child(Ghost.instantiate())
 	Globals.Grapes -= Globals.GhostsPrice
 
 func _on_grape_shop_purchase_grate():

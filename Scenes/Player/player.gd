@@ -30,4 +30,6 @@ func _on_collect_area_body_entered(body):
 	if "collected" in body:
 		if body.get_parent().name == 'Strawberry':
 			Globals.Strawberries += body.gain
+		elif body.get_parent().name == 'Grape':
+			Globals.Grapes += body.gain
 		body.collected()
