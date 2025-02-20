@@ -7,6 +7,8 @@ var wander_radius: Vector2 = Vector2(275, 150)
 var current_tween: Tween
 var in_range = []
 
+signal buff_player(type)
+
 func _ready():
 	_pick_new_target()
 	$WanderTimer.wait_time = randf_range(3.0, 5.0)
@@ -71,4 +73,6 @@ func _on_collect_area_body_entered(body):
 			Globals.Strawberries += body.gain
 		elif body.get_parent().name == 'Grape':
 			Globals.Grapes += body.gain
+		elif body.get_parent().name == 'Apple':
+			buff_player.emit('apple')
 		body.collected()

@@ -4,6 +4,7 @@ signal purchase_speed
 signal purchase_rate
 signal purchase_range
 signal purchase_size
+signal purchase_grapes
 
 var disabled_text: Color = Color("b8b8b8")
 var enabled_text: Color = Color("ffffff")
@@ -37,6 +38,13 @@ func _process(_delta):
 	else:
 		%SizeButton.get_child(0).disabled = false
 		%SizePrice.modulate = enabled_text
+	
+	if Globals.Strawberries < Globals.GrapesPrice or Globals.GrapesUpgCount >= 1:
+		%GrapesButton.get_child(0).disabled = true
+		%GrapesPrice.modulate = disabled_text
+	else:
+		%GrapesButton.get_child(0).disabled = false
+		%GrapesPrice.modulate = enabled_text
 
 
 func _ready():
@@ -44,6 +52,7 @@ func _ready():
 	%RatePrice.text = Globals.fix_nums(Globals.RatePrice)
 	%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
 	%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
+	%GrapesPrice.text = Globals.fix_nums(Globals.GrapesPrice)
 
 func _on_speed_button_button_pressed():
 	purchase_speed.emit()
@@ -68,3 +77,8 @@ func _on_size_button_button_pressed():
 	Globals.SizeUpgCount += 1
 	%SizeTitle.text = "FRUIT SIZE (" + str(Globals.SizeUpgCount) + "/2)"
 	%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
+
+func _on_grapes_button_button_pressed():
+	purchase_grapes.emit()
+	Globals.GrapesUpgCount += 1
+	%GrapesTitle.text = "UNLOCK GRAPES (" + str(Globals.GrapesUpgCount) + "/1)"

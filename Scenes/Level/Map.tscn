@@ -493,6 +493,8 @@ tile_set = SubResource("TileSet_hs0p5")
 
 [node name="Cherry" type="Node2D" parent="Fruits"]
 
+[node name="Apple" type="Node2D" parent="Fruits"]
+
 [node name="Player" parent="." instance=ExtResource("2_wcei2")]
 position = Vector2(-10, -3)
 scale = Vector2(0.5, 0.5)
@@ -622,6 +624,8 @@ position = Vector2(11, 11)
 scale = Vector2(0.135417, 0.135417)
 
 [node name="GrapeShopButton" type="Button" parent="Control/Shops"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 0)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_w1y4b")
@@ -629,7 +633,7 @@ theme_override_styles/pressed = ExtResource("7_1t068")
 theme_override_styles/normal = ExtResource("7_1t068")
 text = "LLl"
 
-[node name="UI" parent="Control/Shops/GrapeShopButton" instance=ExtResource("10_de38q")]
+[node name="GrapeIcon" parent="Control/Shops/GrapeShopButton" instance=ExtResource("10_de38q")]
 position = Vector2(11, 11)
 scale = Vector2(0.135, 0.135)
 
@@ -647,8 +651,8 @@ autostart = true
 [node name="GrapeTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
 wait_time = 2.5
-autostart = true
 
+[connection signal="purchase_grapes" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_grapes"]
 [connection signal="purchase_range" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_range"]
 [connection signal="purchase_rate" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_rate"]
 [connection signal="purchase_size" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_size"]

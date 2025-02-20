@@ -3,6 +3,7 @@ extends CharacterBody2D
 var speed: int = 150
 var _theta: float
 var _direction: Vector2
+var current_pickup
 @export var rotation_speed: float = TAU * 2
 
 
@@ -32,4 +33,11 @@ func _on_collect_area_body_entered(body):
 			Globals.Strawberries += body.gain
 		elif body.get_parent().name == 'Grape':
 			Globals.Grapes += body.gain
+		elif body.get_parent().name == 'Apple':
+			current_pickup = $PickUpRange.scale
+			$PickUpRange.scale *= 1.4
+			$AppleTimer.start()
 		body.collected()
+
+func _on_apple_timer_timeout():
+	$PickUpRange.scale = current_pickup

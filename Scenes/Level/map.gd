@@ -3,6 +3,7 @@ extends Node2D
 @onready var Strawberry: PackedScene = preload("res://Scenes/Fruits/strawberry.tscn")
 @onready var Cherry: PackedScene = preload("res://Scenes/Fruits/cherry.tscn")
 @onready var Grape: PackedScene = preload("res://Scenes/Fruits/grape.tscn")
+@onready var Apple: PackedScene = preload("res://Scenes/Fruits/apple.tscn")
 @onready var Ghost: PackedScene = preload("res://Scenes/Player/ghost.tscn")
 var max_size: int = 1
 var max_spawns: int = 1
@@ -18,6 +19,9 @@ var extra_spawns = [
 	{"amount": 4, "weight": 0.9},
 	{"amount": 5, "weight": 0.1}
 ]
+
+func _ready():
+	_spawn_fruit(Apple, 'Apple')
 
 func _process(_delta):
 	if int(%StrCount.text) != Globals.Strawberries:
@@ -73,7 +77,9 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	elif fruit_name == 'Cherry':
 		fruit.connect('drop_fruits', _on_cherry_drop_fruits)
 		$Fruits/Cherry.add_child(fruit)
-		
+	elif fruit_name == 'Apple':
+		$Fruits/Apple.add_child(fruit)
+	
 	Globals.entities += 1
 
 func _update_gain():
@@ -137,6 +143,11 @@ func _on_strawberry_shop_purchase_size():
 	max_size += 1
 	Globals.Strawberries -= Globals.SizePrice
 	Globals.SizePrice *= 10
+
+func _on_strawberry_shop_purchase_grapes():
+	%GrapeTimer.wait_time = 2.5
+	%GrapeTimer.start()
+	%GrapeShopButton.visible = true
 
 func _on_grape_shop_purchase_extra():
 	max_spawns += 1
