@@ -4,6 +4,9 @@ extends Node2D
 @onready var Cherry: PackedScene = preload("res://Scenes/Fruits/cherry.tscn")
 @onready var Grape: PackedScene = preload("res://Scenes/Fruits/grape.tscn")
 @onready var Apple: PackedScene = preload("res://Scenes/Fruits/apple.tscn")
+@onready var Watermelon: PackedScene = preload("res://Scenes/Fruits/watermelon.tscn")
+@onready var Pineapple: PackedScene = preload("res://Scenes/Fruits/pineapple.tscn")
+@onready var Banana: PackedScene = preload("res://Scenes/Fruits/banana.tscn")
 @onready var Ghost: PackedScene = preload("res://Scenes/Player/ghost.tscn")
 var max_size: int = 1
 var max_spawns: int = 1
@@ -19,9 +22,11 @@ var extra_spawns = [
 	{"amount": 4, "weight": 0.9},
 	{"amount": 5, "weight": 0.1}
 ]
+var locked_power_ups = ['Banana', 'Pineapple', 'Watermelon', 'Apple'] # Add Watermelon, Banana, Pineapple
+var power_ups = []
 
 func _ready():
-	_spawn_fruit(Apple, 'Apple')
+	pass
 
 func _process(_delta):
 	if int(%StrCount.text) != Globals.Strawberries:
@@ -77,8 +82,8 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	elif fruit_name == 'Cherry':
 		fruit.connect('drop_fruits', _on_cherry_drop_fruits)
 		$Fruits/Cherry.add_child(fruit)
-	elif fruit_name == 'Apple':
-		$Fruits/Apple.add_child(fruit)
+	else: # For any powerup fruits
+		$Fruits/Powerup.add_child(fruit)
 	
 	Globals.entities += 1
 
@@ -107,6 +112,19 @@ func _on_grape_timer_timeout():
 		for i in range(get_random_spawns(max_spawns)):
 			_spawn_fruit(Grape, 'Grape')
 			await get_tree().create_timer(0.1).timeout
+
+func _on_powerup_timer_timeout():
+	if Globals.entities < 100:
+		var fruit = power_ups[randi()%len(power_ups)]
+		if fruit == 'Apple':
+			_spawn_fruit(Apple, 'Apple')
+		elif fruit == 'Watermelon':
+			_spawn_fruit(Watermelon, 'Watermelon')
+		elif fruit == 'Pineapple':
+			_spawn_fruit(Pineapple, 'Pineapple')
+		
+	%PowerupTimer.wait_time = randf_range(10, 24)
+	%PowerupTimer.start()
 
 #===========================================================#
 #-----------------------SHOP-BUTTONS------------------------#
@@ -164,6 +182,12 @@ func _on_grape_shop_purchase_ghosts():
 func _on_grape_shop_purchase_grate():
 	%GrapeTimer.wait_time *= 0.9
 	Globals.Grapes -= Globals.GratePrice
+
+func _on_grape_shop_purchase_powerups():
+	power_ups.append(locked_power_ups.pop_front())
+	print('unlocked', locked_power_ups.pop_front())
+	%PowerupTimer.wait_time = randf_range(10, 24)
+	%PowerupTimer.start()
 
 #===========================================================#
 

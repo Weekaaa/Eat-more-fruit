@@ -4,6 +4,7 @@ signal purchase_gain
 signal purchase_extra
 signal purchase_grate
 signal purchase_ghosts
+signal purchase_powerups
 
 var disabled_text: Color = Color("b8b8b8")
 var enabled_text: Color = Color("ffffff")
@@ -37,6 +38,14 @@ func _process(_delta):
 	else:
 		%GainButton.get_child(0).disabled = false
 		%GainPrice.modulate = enabled_text
+		
+	if Globals.Grapes < Globals.PowerupsPrice or Globals.PowerupsUpgCount >= 4:
+		%PowerupsButton.get_child(0).disabled = true
+		%PowerupsPrice.modulate = disabled_text
+	else:
+		%PowerupsButton.get_child(0).disabled = false
+		%PowerupsPrice.modulate = enabled_text
+
 
 
 func _ready():
@@ -44,6 +53,7 @@ func _ready():
 	%ExtraPrice.text = Globals.fix_nums(Globals.ExtraPrice)
 	%GhostsPrice.text = Globals.fix_nums(Globals.GhostsPrice)
 	%GainPrice.text = Globals.fix_nums(Globals.GainPrice)
+	%PowerupsPrice.text = Globals.fix_nums(Globals.PowerupsPrice)
 
 func _on_gain_button_button_pressed():
 	Globals.GainUpgCount += 1
@@ -68,3 +78,9 @@ func _on_ghosts_button_button_pressed():
 	purchase_ghosts.emit()
 	%GhostsTitle.text = "AUTO COLLECT (" + str(Globals.GhostsUpgCount) + "/10)"
 	%GhostsPrice.text = Globals.fix_nums(Globals.GhostsPrice)
+
+func _on_powerups_button_button_pressed():
+	Globals.PowerupsUpgCount += 1
+	purchase_powerups.emit()
+	%PowerupsTitle.text = "POWER-UPS (" + str(Globals.PowerupsUpgCount) + "/4)"
+	%PowerupsPrice.text = Globals.fix_nums(Globals.PowerupsPrice)

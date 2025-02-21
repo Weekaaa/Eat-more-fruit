@@ -51,6 +51,7 @@ offset_right = -15.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
+scroll_vertical = 106
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/ScrollContainer"]
 layout_mode = 2
@@ -231,7 +232,54 @@ label_settings = ExtResource("6_l4uyh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HSeparator4" type="HSeparator" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+theme_override_styles/separator = ExtResource("6_01bgf")
+
+[node name="Powerups" type="HBoxContainer" parent="NinePatchRect/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 233
+
+[node name="PowerupsDetails" type="VBoxContainer" parent="NinePatchRect/ScrollContainer/VBoxContainer/Powerups"]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="PowerupsTitle" type="Label" parent="NinePatchRect/ScrollContainer/VBoxContainer/Powerups/PowerupsDetails"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "POWER-UPS (0/4)"
+label_settings = ExtResource("2_s7048")
+
+[node name="PowerupsDesc" type="Label" parent="NinePatchRect/ScrollContainer/VBoxContainer/Powerups/PowerupsDetails"]
+layout_mode = 2
+text = "Spawns rare fruits that grant a special ability
+on pickup."
+label_settings = ExtResource("3_ngci3")
+
+[node name="PowerupsButton" parent="NinePatchRect/ScrollContainer/VBoxContainer/Powerups" instance=ExtResource("4_14qm7")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="UI" parent="NinePatchRect/ScrollContainer/VBoxContainer/Powerups/PowerupsButton" instance=ExtResource("5_r8ryo")]
+position = Vector2(-97, -4)
+scale = Vector2(0.333, 0.333)
+
+[node name="PowerupsPrice" type="Label" parent="NinePatchRect/ScrollContainer/VBoxContainer/Powerups/PowerupsButton"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -33.0
+offset_top = -12.0
+offset_right = 32.0
+offset_bottom = 12.0
+label_settings = ExtResource("6_l4uyh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_pressed" from="NinePatchRect/ScrollContainer/VBoxContainer/Gain/GainButton" to="." method="_on_gain_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/ScrollContainer/VBoxContainer/Extra/ExtraButton" to="." method="_on_extra_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/ScrollContainer/VBoxContainer/Grate/GrateButton" to="." method="_on_grate_button_button_pressed"]
 [connection signal="button_pressed" from="NinePatchRect/ScrollContainer/VBoxContainer/Ghosts/GhostsButton" to="." method="_on_ghosts_button_button_pressed"]
+[connection signal="button_pressed" from="NinePatchRect/ScrollContainer/VBoxContainer/Powerups/PowerupsButton" to="." method="_on_powerups_button_button_pressed"]

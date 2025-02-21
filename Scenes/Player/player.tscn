@@ -93,6 +93,21 @@ libraries = {
 wait_time = 5.0
 one_shot = true
 
+[node name="WatermelonTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="PineappleTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="BananaTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
 [connection signal="timeout" from="AppleTimer" to="." method="_on_apple_timer_timeout"]
+[connection signal="timeout" from="WatermelonTimer" to="." method="_on_watermelon_timer_timeout"]
+[connection signal="timeout" from="PineappleTimer" to="." method="_on_pineapple_timer_timeout"]
+[connection signal="timeout" from="BananaTimer" to="." method="_on_banana_timer_timeout"]

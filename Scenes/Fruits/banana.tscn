@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://dhjgubmnfc7fh"]
+
+[ext_resource type="PackedScene" uid="uid://bf71m5f7idu34" path="res://Scenes/Fruits/fruit_template.tscn" id="1_co3xs"]
+[ext_resource type="Script" path="res://Scenes/Fruits/banana.gd" id="2_6gm43"]
+[ext_resource type="Texture2D" uid="uid://yrppjacspmue" path="res://Assets/fruit union/fruits2.png" id="2_onvwy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5t7t2"]
+radius = 121.655
+
+[sub_resource type="Animation" id="Animation_hs5d7"]
+resource_name = "Spawn"
+length = 0.44
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.44),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.4, 1.4), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pv2v6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Image:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ejapg"]
+_data = {
+"RESET": SubResource("Animation_pv2v6"),
+"Spawn": SubResource("Animation_hs5d7")
+}
+
+[node name="Banana" instance=ExtResource("1_co3xs")]
+scale = Vector2(0.1, 0.1)
+script = ExtResource("2_6gm43")
+
+[node name="Hitbox" parent="." index="0"]
+position = Vector2(-18.28, 0)
+shape = SubResource("CircleShape2D_5t7t2")
+
+[node name="Image" parent="." index="1"]
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_onvwy")
+hframes = 2
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_ejapg")
+}
+autoplay = "Spawn"
