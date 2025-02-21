@@ -52,7 +52,6 @@ offset_right = -15.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scroll_vertical = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/ScrollContainer"]
 layout_mode = 2
@@ -73,7 +72,7 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("2_pn3jg")
 theme_override_font_sizes/font_size = 18
-text = "SPEED (0/30)"
+text = "SPEED (0/10)"
 label_settings = ExtResource("3_hdreg")
 
 [node name="SpeedDesc" type="Label" parent="NinePatchRect/ScrollContainer/VBoxContainer/Speed/SpeedDetails"]
@@ -185,7 +184,7 @@ layout_mode = 2
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("2_pn3jg")
 theme_override_font_sizes/font_size = 18
-text = "GRAB RANGE (0/20)"
+text = "GRAB RANGE (0/15)"
 label_settings = ExtResource("3_hdreg")
 
 [node name="RangeDesc" type="Label" parent="NinePatchRect/ScrollContainer/VBoxContainer/Range/RangeDetails"]

@@ -641,6 +641,7 @@ scale = Vector2(0.135, 0.135)
 
 [node name="StrawberryTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
+wait_time = 1.6
 autostart = true
 
 [node name="CherryTimer" type="Timer" parent="Timers"]
@@ -650,7 +651,7 @@ autostart = true
 
 [node name="GrapeTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true
-wait_time = 2.5
+wait_time = 1.8
 
 [node name="PowerupTimer" type="Timer" parent="Timers"]
 unique_name_in_owner = true

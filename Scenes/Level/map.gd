@@ -22,7 +22,7 @@ var extra_spawns = [
 	{"amount": 4, "weight": 0.9},
 	{"amount": 5, "weight": 0.1}
 ]
-var locked_power_ups = ['Banana', 'Pineapple', 'Watermelon', 'Apple'] # Add Watermelon, Banana, Pineapple
+var locked_power_ups = ['Banana', 'Pineapple', 'Watermelon', 'Apple']
 var power_ups = []
 
 func _ready():
@@ -98,23 +98,23 @@ func _update_gain():
 #===========================================================#
 
 func _on_strawberry_timer_timeout():
-	if Globals.entities < 100:
+	if Globals.entities < 300:
 		for i in range(get_random_spawns(max_spawns)):
 			_spawn_fruit(Strawberry, 'Strawberry')
 			await get_tree().create_timer(0.1).timeout
 
 func _on_cherry_timer_timeout():
-	if Globals.entities > 30:
+	if Globals.entities > 50:
 		_spawn_fruit(Cherry, 'Cherry')
 
 func _on_grape_timer_timeout():
-	if Globals.entities < 100:
+	if Globals.entities < 300:
 		for i in range(get_random_spawns(max_spawns)):
 			_spawn_fruit(Grape, 'Grape')
 			await get_tree().create_timer(0.1).timeout
 
 func _on_powerup_timer_timeout():
-	if Globals.entities < 100:
+	if Globals.entities < 300:
 		var fruit = power_ups[randi()%len(power_ups)]
 		if fruit == 'Apple':
 			_spawn_fruit(Apple, 'Apple')
@@ -122,6 +122,8 @@ func _on_powerup_timer_timeout():
 			_spawn_fruit(Watermelon, 'Watermelon')
 		elif fruit == 'Pineapple':
 			_spawn_fruit(Pineapple, 'Pineapple')
+		elif fruit == 'Banana':
+			_spawn_fruit(Banana, 'Banana')
 		
 	%PowerupTimer.wait_time = randf_range(10, 24)
 	%PowerupTimer.start()
@@ -143,19 +145,33 @@ func _on_grape_shop_button_pressed():
 #===========================================================#
 
 func _on_strawberry_shop_purchase_range():
-	$Player.get_child(2).scale *= 1.1
+	$Player.get_child(3).scale *= 1.1
 	Globals.Strawberries -= Globals.RangePrice
-	Globals.RangePrice *= 2
+	if Globals.RangeUpgCount < 6:
+		Globals.RangePrice *= 1.5
+	else:
+		Globals.RangePrice *= 2
 
 func _on_strawberry_shop_purchase_rate():
-	%StrawberryTimer.wait_time *= 0.9
+	%StrawberryTimer.wait_time *= 0.8
 	Globals.Strawberries -= Globals.RatePrice
-	Globals.RatePrice *= 2
+	if Globals.RateUpgCount > 8:
+		Globals.RatePrice *= 1.5
+	elif Globals.RateUpgCount > 1:
+		Globals.RatePrice *= 2
+	else:
+		Globals.RatePrice *= 1.5
+	print(%StrawberryTimer.wait_time)
 
 func _on_strawberry_shop_purchase_speed():
 	$Player.speed += 20
 	Globals.Strawberries -= Globals.SpeedPrice
-	Globals.SpeedPrice *= 2
+	if Globals.SpeedUpgCount > 6:
+		Globals.SpeedPrice *= 4
+	elif Globals.SpeedUpgCount > 3:
+		Globals.SpeedPrice *= 2.5
+	else:
+		Globals.SpeedPrice *= 1.5
 
 func _on_strawberry_shop_purchase_size():
 	max_size += 1
@@ -163,7 +179,6 @@ func _on_strawberry_shop_purchase_size():
 	Globals.SizePrice *= 10
 
 func _on_strawberry_shop_purchase_grapes():
-	%GrapeTimer.wait_time = 2.5
 	%GrapeTimer.start()
 	%GrapeShopButton.visible = true
 
@@ -184,9 +199,8 @@ func _on_grape_shop_purchase_grate():
 	Globals.Grapes -= Globals.GratePrice
 
 func _on_grape_shop_purchase_powerups():
-	power_ups.append(locked_power_ups.pop_front())
-	print('unlocked', locked_power_ups.pop_front())
-	%PowerupTimer.wait_time = randf_range(10, 24)
+	power_ups.append(locked_power_ups.pop_back())
+	%PowerupTimer.wait_time = randf_range(10, 20)
 	%PowerupTimer.start()
 
 #===========================================================#

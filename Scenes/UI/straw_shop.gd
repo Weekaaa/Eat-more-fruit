@@ -11,7 +11,7 @@ var enabled_text: Color = Color("ffffff")
 
 
 func _process(_delta):
-	if Globals.Strawberries < Globals.SpeedPrice or Globals.SpeedUpgCount >= 30:
+	if Globals.Strawberries < Globals.SpeedPrice or Globals.SpeedUpgCount >= 10:
 		%SpeedButton.get_child(0).disabled = true
 		%SpeedPrice.modulate = disabled_text
 	else:
@@ -25,7 +25,7 @@ func _process(_delta):
 		%RateButton.get_child(0).disabled = false
 		%RatePrice.modulate = enabled_text
 		
-	if Globals.Strawberries < Globals.RangePrice or Globals.RangeUpgCount >= 20:
+	if Globals.Strawberries < Globals.RangePrice or Globals.RangeUpgCount >= 15:
 		%RangeButton.get_child(0).disabled = true
 		%RangePrice.modulate = disabled_text
 	else:
@@ -55,30 +55,43 @@ func _ready():
 	%GrapesPrice.text = Globals.fix_nums(Globals.GrapesPrice)
 
 func _on_speed_button_button_pressed():
-	purchase_speed.emit()
 	Globals.SpeedUpgCount += 1
-	%SpeedTitle.text = "SPEED (" + str(Globals.SpeedUpgCount) + "/30)"
-	%SpeedPrice.text = Globals.fix_nums(Globals.SpeedPrice)
+	purchase_speed.emit()
+	%SpeedTitle.text = "SPEED (" + str(Globals.SpeedUpgCount) + "/10)"
+	if Globals.SpeedUpgCount < 10:
+		%SpeedPrice.text = Globals.fix_nums(Globals.SpeedPrice)
+	else:
+		%SpeedPrice.text = "DONE"
 
 func _on_rate_button_button_pressed():
-	purchase_rate.emit()
 	Globals.RateUpgCount += 1
+	purchase_rate.emit()
 	%RateTitle.text = "SPAWN RATE (" + str(Globals.RateUpgCount) + "/15)"
-	%RatePrice.text = Globals.fix_nums(Globals.RatePrice)
+	if Globals.RateUpgCount < 15:
+		%RatePrice.text = Globals.fix_nums(Globals.RatePrice)
+	else:
+		%RatePrice.text = 'DONE'
 
 func _on_range_button_button_pressed():
-	purchase_range.emit()
 	Globals.RangeUpgCount += 1
-	%RangeTitle.text = "GRAB RANGE (" + str(Globals.RangeUpgCount) + "/20)"
-	%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
+	purchase_range.emit()
+	%RangeTitle.text = "GRAB RANGE (" + str(Globals.RangeUpgCount) + "/15)"
+	if Globals.RangeUpgCount < 15:
+		%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
+	else:
+		%RangePrice.text = 'DONE'
 
 func _on_size_button_button_pressed():
-	purchase_size.emit()
 	Globals.SizeUpgCount += 1
+	purchase_size.emit()
 	%SizeTitle.text = "FRUIT SIZE (" + str(Globals.SizeUpgCount) + "/2)"
-	%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
+	if Globals.SizeUpgCount < 2:
+		%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
+	else:
+		%SizePrice.text = 'DONE'
 
 func _on_grapes_button_button_pressed():
-	purchase_grapes.emit()
 	Globals.GrapesUpgCount += 1
+	purchase_grapes.emit()
 	%GrapesTitle.text = "UNLOCK GRAPES (" + str(Globals.GrapesUpgCount) + "/1)"
+	%GrapesPrice.text = 'DONE'

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed: int = 150
+var speed: int = 125
 var _theta: float
 var _direction: Vector2
 var current_pickup
