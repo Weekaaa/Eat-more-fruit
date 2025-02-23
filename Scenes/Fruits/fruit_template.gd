@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Collectable 
 
-@export var speed = 200
+@export var speed = 300
 var gain: int = 1
 var follow_target = false
 var player_position

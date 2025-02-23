@@ -68,15 +68,15 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	
 	var fruit = fruit_type.instantiate()
 	var traits = get_random_scale(max_size)
+	var base = 2
 	fruit.global_position = random_pos
-	fruit.gain += Globals.GainUpgCount
 	
-	if fruit_name == 'Strawberry':
-		fruit.gain *= (traits[1] + 1) ** 2
+	if fruit_name == 'Strawberry': 
+		base += traits[1]
 		fruit.scale = traits[0]
 		$Fruits/Strawberry.add_child(fruit)
 	elif fruit_name == 'Grape':
-		fruit.gain *= (traits[1] + 1) ** 2
+		base += traits[1]
 		fruit.scale = traits[0]
 		$Fruits/Grape.add_child(fruit)
 	elif fruit_name == 'Cherry':
@@ -85,13 +85,14 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 	else: # For any powerup fruits
 		$Fruits/Powerup.add_child(fruit)
 	
+	fruit.gain = pow(base, Globals.GainUpgCount)
 	Globals.entities += 1
 
 func _update_gain():
 	for fruit in $Fruits/Strawberry.get_children():
-		fruit.gain += Globals.GainUpgCount
+		fruit.gain **= (Globals.GainUpgCount + 1)
 	for fruit in $Fruits/Grape.get_children():
-		fruit.gain += Globals.GainUpgCount
+		fruit.gain **= (Globals.GainUpgCount + 1)
 
 #===========================================================#
 #--------------------------TIMERS---------------------------#
@@ -181,13 +182,14 @@ func _on_strawberry_shop_purchase_size():
 func _on_strawberry_shop_purchase_grapes():
 	%GrapeTimer.start()
 	%GrapeShopButton.visible = true
+	Globals.Strawberries -= Globals.GrapesPrice
 
 func _on_grape_shop_purchase_extra():
 	max_spawns += 1
 	Globals.Grapes -= Globals.ExtraPrice
 
 func _on_grape_shop_purchase_gain():
-	_update_gain()
+	#_update_gain()
 	Globals.Grapes -= Globals.GainPrice
 
 func _on_grape_shop_purchase_ghosts():
@@ -202,6 +204,7 @@ func _on_grape_shop_purchase_powerups():
 	power_ups.append(locked_power_ups.pop_back())
 	%PowerupTimer.wait_time = randf_range(10, 20)
 	%PowerupTimer.start()
+	Globals.Grapes -= Globals.PowerupsPrice
 
 #===========================================================#
 

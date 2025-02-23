@@ -51,7 +51,7 @@ offset_right = -15.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 2
-scroll_vertical = 106
+scroll_vertical = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/ScrollContainer"]
 layout_mode = 2

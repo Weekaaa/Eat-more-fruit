@@ -2,8 +2,8 @@ extends Node
 
 # player collectables
 var entities: int = 0
-var Strawberries: int = 0
-var Grapes: int = 2000
+var Strawberries: int = 937
+var Grapes: int = 150
 
 # upgrade counts
 var SpeedUpgCount: int = 0
@@ -24,10 +24,10 @@ var RangePrice: int = 5
 var SizePrice: int = 500
 var GrapesPrice: int = 250
 var GratePrice: int = 20
-var ExtraPrice: int = 100
-var GhostsPrice: int = 200
-var GainPrice: int = 250
-var PowerupsPrice: int = 500
+var ExtraPrice: int = 50
+var GhostsPrice: int = 100
+var GainPrice: int = 50
+var PowerupsPrice: int = 100
 
 func fix_nums(num):
 	var suffixes = ["", "K", "M", "B", "T"]
