@@ -16,13 +16,13 @@ var scale_options = [
 	{"scale": Vector2(0.25, 0.25), "weight": 1}   # 1% chance (1/100)
 ]
 var extra_spawns = [
-	{"amount": 1, "weight": 83},
-	{"amount": 2, "weight": 12},
-	{"amount": 3, "weight": 4},
+	{"amount": 1, "weight": 75},
+	{"amount": 2, "weight": 18},
+	{"amount": 3, "weight": 6},
 	{"amount": 4, "weight": 0.9},
 	{"amount": 5, "weight": 0.1}
 ]
-var locked_power_ups = ['Banana', 'Pineapple', 'Watermelon', 'Apple']
+var locked_power_ups = ['Apple', 'Watermelon', 'Pineapple', 'Banana']
 var power_ups = []
 
 func _ready():
@@ -86,13 +86,10 @@ func _spawn_fruit(fruit_type: PackedScene, fruit_name: String):
 		$Fruits/Powerup.add_child(fruit)
 	
 	fruit.gain = pow(base, Globals.GainUpgCount)
+	# Special case so that the extra size upgrade works at a certain level
+	if Globals.SizeUpgCount == 1 and Globals.GainUpgCount == 0 and traits[1] == 1: 
+		fruit.gain += 1
 	Globals.entities += 1
-
-func _update_gain():
-	for fruit in $Fruits/Strawberry.get_children():
-		fruit.gain **= (Globals.GainUpgCount + 1)
-	for fruit in $Fruits/Grape.get_children():
-		fruit.gain **= (Globals.GainUpgCount + 1)
 
 #===========================================================#
 #--------------------------TIMERS---------------------------#
@@ -162,7 +159,6 @@ func _on_strawberry_shop_purchase_rate():
 		Globals.RatePrice *= 2
 	else:
 		Globals.RatePrice *= 1.5
-	print(%StrawberryTimer.wait_time)
 
 func _on_strawberry_shop_purchase_speed():
 	$Player.speed += 20
@@ -177,7 +173,7 @@ func _on_strawberry_shop_purchase_speed():
 func _on_strawberry_shop_purchase_size():
 	max_size += 1
 	Globals.Strawberries -= Globals.SizePrice
-	Globals.SizePrice *= 10
+	Globals.SizePrice *= 20
 
 func _on_strawberry_shop_purchase_grapes():
 	%GrapeTimer.start()
@@ -187,24 +183,44 @@ func _on_strawberry_shop_purchase_grapes():
 func _on_grape_shop_purchase_extra():
 	max_spawns += 1
 	Globals.Grapes -= Globals.ExtraPrice
+	Globals.ExtraPrice *= pow(2, Globals.ExtraUpgCount + 1) * 2
 
 func _on_grape_shop_purchase_gain():
-	#_update_gain()
 	Globals.Grapes -= Globals.GainPrice
+	if Globals.GainUpgCount > 8:
+		Globals.GainPrice *= 1.5
+	elif Globals.GainUpgCount > 5:
+		Globals.GainPrice *= 2
+	else:
+		Globals.GainPrice *= 2.5
 
 func _on_grape_shop_purchase_ghosts():
 	$Ghosts.add_child(Ghost.instantiate())
 	Globals.Grapes -= Globals.GhostsPrice
+	Globals.GhostsPrice *= 3
 
 func _on_grape_shop_purchase_grate():
 	%GrapeTimer.wait_time *= 0.9
 	Globals.Grapes -= Globals.GratePrice
+	if Globals.GrateUpgCount > 10:
+		Globals.GratePrice *= 1.5
+	elif Globals.GrateUpgCount > 2:
+		Globals.GratePrice *= 2
+	else:
+		Globals.GratePrice *= 1.5
+	print(%GrapeTimer.wait_time)
 
 func _on_grape_shop_purchase_powerups():
 	power_ups.append(locked_power_ups.pop_back())
 	%PowerupTimer.wait_time = randf_range(10, 20)
 	%PowerupTimer.start()
 	Globals.Grapes -= Globals.PowerupsPrice
+	if Globals.PowerupsUpgCount == 1:
+		Globals.PowerupsPrice = 2500
+	elif Globals.PowerupsUpgCount == 2:
+		Globals.PowerupsPrice = 50000
+	elif Globals.PowerupsUpgCount == 3:
+		Globals.PowerupsPrice = 200000
 
 #===========================================================#
 
