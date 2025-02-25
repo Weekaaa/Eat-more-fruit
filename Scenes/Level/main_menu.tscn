@@ -1,0 +1,613 @@
+[gd_scene load_steps=32 format=3 uid="uid://cpqgkivvdcl3b"]
+
+[ext_resource type="Texture2D" uid="uid://bxkv6ukshle67" path="res://Assets/fruit union/blue_sky.png" id="1_0ta4k"]
+[ext_resource type="Script" path="res://Scenes/Level/main_menu.gd" id="1_i1wtu"]
+[ext_resource type="FontFile" uid="uid://bwjm3vs0gm5hu" path="res://Assets/MinecraftStandardBold.otf" id="2_k216s"]
+[ext_resource type="FontFile" uid="uid://dwtw786qbm6b7" path="res://Assets/MinecraftStandard.otf" id="3_tyqyu"]
+[ext_resource type="StyleBox" uid="uid://dh7m02loudpn0" path="res://Scenes/UI/Templates/main_menu_button.tres" id="4_nvmur"]
+[ext_resource type="Texture2D" uid="uid://yrppjacspmue" path="res://Assets/fruit union/fruits2.png" id="5_jmct5"]
+[ext_resource type="Texture2D" uid="uid://cs8vdravbksll" path="res://Assets/fruit union/fruits.png" id="7_obnnj"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_unrbx"]
+texture = ExtResource("1_0ta4k")
+
+[sub_resource type="Curve2D" id="Curve2D_ue4s6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -351.94, 0, 0, 0, 0, 690, 763)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_ppdeg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -120.63, 0, 0, 0, 0, 690, 1000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_wnvey"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -287.58, 0, 0, 0, 0, 690, 700.995)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_t3045"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -378.95, 0, 0, 0, 0, 690, 788.155)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_n7wxk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -1000, 0, 0, 0, 0, 690, 1000)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_2xrvw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -298.985, 0, 0, 0, 0, 690, 720.5)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_h7cfk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -429.79, 0, 0, 0, 0, 690, 937.7)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_b11pn"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -1500, 0, 0, 0, 0, 690, 937.7)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_27xtu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -700, 0, 0, 0, 0, 690, 936.68)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_s3dwg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -411.93, 0, 0, 0, 0, 690, 763)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_6ay4i"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -900, 0, 0, 0, 0, 690, 1200)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_b02vd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 690, -186.19, 0, 0, 0, 0, 690, 928.685)
+}
+point_count = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_8bqou"]
+line_spacing = -9.33
+font = ExtResource("2_k216s")
+font_size = 56
+outline_size = 40
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 41
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(-6.34, 10.24)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5eboj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mi1gb"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 1)
+skew = Vector2(0.4, 0)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 40.0
+expand_margin_right = 95.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_086aj"]
+bg_color = Color(0.597176, 0.597176, 0.597176, 1)
+skew = Vector2(0.4, 0)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 40.0
+expand_margin_right = 95.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfpf2"]
+bg_color = Color(0.783523, 0.783523, 0.783523, 1)
+skew = Vector2(0.4, 0)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 80.0
+expand_margin_right = 95.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcgdr"]
+bg_color = Color(0.597176, 0.597176, 0.597176, 1)
+skew = Vector2(0.4, 0)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 80.0
+expand_margin_right = 95.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55w4r"]
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(0.4, 0)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 30.0
+expand_margin_right = 95.0
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_potgh"]
+resource_name = "TextMovement"
+length = 7.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameName:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.28, 1.28), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameName:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(13.056, 224.736), Vector2(-46.669, 224.736), Vector2(13.056, 224.736)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameName:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0.466667, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(0.294118, 0, 0.521569, 1), Color(0.54902, 0, 1, 1), Color(1, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameName:label_settings:shadow_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.46, 0, 1, 2, 3, 4, 5, 6, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Color(1, 0, 0, 1), Color(1, 0.466667, 0, 1), Color(1, 1, 0, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1), Color(0.294118, 0, 0.521569, 1), Color(0.54902, 0, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aimkd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameName:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GameName:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(13.056, 224.736)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameName:label_settings:font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GameName:label_settings:shadow_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q43t8"]
+resource_name = "FadeIn"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.412152, 0.412152, 0.412152, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s4eqq"]
+_data = {
+"FadeIn": SubResource("Animation_q43t8"),
+"RESET": SubResource("Animation_aimkd"),
+"TextMovement": SubResource("Animation_potgh")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i1wtu")
+
+[node name="Sky" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_unrbx")
+
+[node name="FallingFruits" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="FallingFruits"]
+curve = SubResource("Curve2D_ue4s6")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D"]
+position = Vector2(690, -351.94)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D/PathFollow2D"]
+rotation = 5.00909
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_jmct5")
+hframes = 2
+
+[node name="Path2D2" type="Path2D" parent="FallingFruits"]
+position = Vector2(-135.935, 0)
+curve = SubResource("Curve2D_ppdeg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D2"]
+position = Vector2(690, -120.63)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D2/PathFollow2D"]
+rotation = 4.06662
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_jmct5")
+hframes = 2
+frame = 1
+
+[node name="Path2D3" type="Path2D" parent="FallingFruits"]
+position = Vector2(128.18, 0)
+curve = SubResource("Curve2D_wnvey")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D3"]
+position = Vector2(690, -287.58)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D3/PathFollow2D"]
+rotation = 4.55531
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_obnnj")
+hframes = 8
+
+[node name="Path2D4" type="Path2D" parent="FallingFruits"]
+position = Vector2(-600, 0)
+curve = SubResource("Curve2D_t3045")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D4"]
+position = Vector2(690, -378.95)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D4/PathFollow2D"]
+rotation = 0.401426
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 1
+
+[node name="Path2D11" type="Path2D" parent="FallingFruits"]
+position = Vector2(-48.45, 0)
+curve = SubResource("Curve2D_n7wxk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D11"]
+position = Vector2(690, -1000)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D11/PathFollow2D"]
+rotation = -2.79253
+scale = Vector2(0.36, 0.36)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 1
+
+[node name="Path2D5" type="Path2D" parent="FallingFruits"]
+position = Vector2(-450, 0)
+curve = SubResource("Curve2D_2xrvw")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D5"]
+position = Vector2(690, -298.985)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D5/PathFollow2D"]
+rotation = 5.00909
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 3
+
+[node name="Path2D6" type="Path2D" parent="FallingFruits"]
+position = Vector2(-330, 0)
+curve = SubResource("Curve2D_h7cfk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D6"]
+position = Vector2(690, -429.79)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D6/PathFollow2D"]
+rotation = 3.37721
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 2
+
+[node name="Path2D13" type="Path2D" parent="FallingFruits"]
+position = Vector2(186.625, -102.865)
+curve = SubResource("Curve2D_b11pn")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D13"]
+position = Vector2(690, -1500)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D13/PathFollow2D"]
+rotation = 4.3546
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 2
+
+[node name="Path2D9" type="Path2D" parent="FallingFruits"]
+position = Vector2(-235.625, -33.96)
+curve = SubResource("Curve2D_h7cfk")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D9"]
+position = Vector2(690, -429.79)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D9/PathFollow2D"]
+rotation = 6.05629
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 6
+
+[node name="Path2D10" type="Path2D" parent="FallingFruits"]
+position = Vector2(-497.335, -19.925)
+curve = SubResource("Curve2D_27xtu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D10"]
+position = Vector2(690, -700)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D10/PathFollow2D"]
+rotation = 1.50098
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 7
+
+[node name="Path2D7" type="Path2D" parent="FallingFruits"]
+position = Vector2(227.085, 0)
+curve = SubResource("Curve2D_s3dwg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D7"]
+position = Vector2(690, -411.93)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D7/PathFollow2D"]
+rotation = 4.47677
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 4
+
+[node name="Path2D12" type="Path2D" parent="FallingFruits"]
+position = Vector2(-395.18, 0)
+curve = SubResource("Curve2D_6ay4i")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D12"]
+position = Vector2(690, -900)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D12/PathFollow2D"]
+rotation = 3.07178
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 4
+
+[node name="Path2D8" type="Path2D" parent="FallingFruits"]
+position = Vector2(345.47, 0)
+curve = SubResource("Curve2D_b02vd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="FallingFruits/Path2D8"]
+position = Vector2(690, -186.19)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="FallingFruits/Path2D8/PathFollow2D"]
+rotation = 3.92699
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_obnnj")
+hframes = 8
+frame = 5
+
+[node name="GameName" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.253
+anchor_top = 0.332
+anchor_right = 0.253
+anchor_bottom = 0.332
+offset_left = -278.4
+offset_top = 9.59999
+offset_right = 215.6
+offset_bottom = 262.6
+grow_vertical = 0
+rotation = -0.520108
+text = "Eat More!
+Fruit!"
+label_settings = SubResource("LabelSettings_8bqou")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.865
+anchor_top = 0.735
+anchor_right = 0.865
+anchor_bottom = 0.735
+offset_left = -126.04
+offset_top = -112.24
+offset_right = 124.96
+offset_bottom = 112.76
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="StartGameButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_tyqyu")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5eboj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mi1gb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_086aj")
+theme_override_styles/normal = ExtResource("4_nvmur")
+text = "START"
+
+[node name="SettingsButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_tyqyu")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5eboj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lfpf2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pcgdr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_55w4r")
+text = "SETTINGS"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.625
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s4eqq")
+}
+autoplay = "TextMovement"
+
+[connection signal="button_up" from="Buttons/StartGameButton" to="." method="_on_start_game_button_button_up"]

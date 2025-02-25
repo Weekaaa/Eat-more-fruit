@@ -657,6 +657,16 @@ wait_time = 1.8
 unique_name_in_owner = true
 one_shot = true
 
+[node name="Transition" type="ColorRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 207.895
+color = Color(0, 0, 0, 1)
+
 [connection signal="purchase_grapes" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_grapes"]
 [connection signal="purchase_range" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_range"]
 [connection signal="purchase_rate" from="Control/StrawberryShop" to="." method="_on_strawberry_shop_purchase_rate"]

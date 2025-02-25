@@ -8,6 +8,7 @@ extends Node2D
 @onready var Pineapple: PackedScene = preload("res://Scenes/Fruits/pineapple.tscn")
 @onready var Banana: PackedScene = preload("res://Scenes/Fruits/banana.tscn")
 @onready var Ghost: PackedScene = preload("res://Scenes/Player/ghost.tscn")
+var last_powerup = null
 var max_size: int = 1
 var max_spawns: int = 1
 var scale_options = [
@@ -26,7 +27,8 @@ var locked_power_ups = ['Apple', 'Watermelon', 'Pineapple', 'Banana']
 var power_ups = []
 
 func _ready():
-	pass
+	var tween = create_tween()
+	tween.tween_property($ColorRect, "modulate", Color(00000000), 1)
 
 func _process(_delta):
 	if int(%StrCount.text) != Globals.Strawberries:
@@ -114,6 +116,10 @@ func _on_grape_timer_timeout():
 func _on_powerup_timer_timeout():
 	if Globals.entities < 300:
 		var fruit = power_ups[randi()%len(power_ups)]
+		while last_powerup == fruit and Globals.PowerupsUpgCount != 1:
+			fruit = power_ups[randi()%len(power_ups)]
+		last_powerup = fruit
+		
 		if fruit == 'Apple':
 			_spawn_fruit(Apple, 'Apple')
 		elif fruit == 'Watermelon':
@@ -124,6 +130,7 @@ func _on_powerup_timer_timeout():
 			_spawn_fruit(Banana, 'Banana')
 		
 	%PowerupTimer.wait_time = randf_range(10, 24)
+	print(%PowerupTimer.wait_time)
 	%PowerupTimer.start()
 
 #===========================================================#

@@ -7,6 +7,8 @@ var current_pickup
 var banana_mult: int = 1
 @export var rotation_speed: float = TAU * 2
 
+func _ready():
+	Globals.powerup_collected.connect(_on_collect_area_body_entered)
 
 func _process(_delta):
 	_direction = Input.get_vector("left", "right", "up", "down")
