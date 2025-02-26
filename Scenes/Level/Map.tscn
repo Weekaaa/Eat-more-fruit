@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ddk16dlr6khrj"]
+[gd_scene load_steps=17 format=4 uid="uid://ddk16dlr6khrj"]
 
 [ext_resource type="Texture2D" uid="uid://dsr0puiwk0lxr" path="res://Assets/TilesetFloor.png" id="1_iy6mj"]
 [ext_resource type="Script" path="res://Scenes/Level/map.gd" id="1_p2x64"]
@@ -476,6 +476,12 @@ texture = ExtResource("1_iy6mj")
 [sub_resource type="TileSet" id="TileSet_hs0p5"]
 sources/0 = SubResource("TileSetAtlasSource_u60wp")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0gqo"]
+size = Vector2(584, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f7mcd"]
+size = Vector2(20, 330)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w1y4b"]
 
 [node name="Node2D" type="Node2D"]
@@ -511,6 +517,27 @@ position = Vector2(-278, -152)
 
 [node name="Marker2D2" type="Marker2D" parent="SpawnLocations"]
 position = Vector2(278, 152)
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(0, -174.885)
+shape = SubResource("RectangleShape2D_x0gqo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(0, 175.35)
+shape = SubResource("RectangleShape2D_x0gqo")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(-301.82, 0)
+shape = SubResource("RectangleShape2D_f7mcd")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders/StaticBody2D"]
+position = Vector2(301.82, 0)
+shape = SubResource("RectangleShape2D_f7mcd")
 
 [node name="Control" type="Control" parent="."]
 z_index = 2
