@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0lswl7o4nwjr"]
+[gd_scene load_steps=10 format=3 uid="uid://c0lswl7o4nwjr"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_h21yi"]
 [ext_resource type="Texture2D" uid="uid://box3lg3tkxpki" path="res://Assets/oldman_walk_sheet.png" id="1_oxs2o"]
+[ext_resource type="AudioStream" uid="uid://cdhe6gm1en3ah" path="res://Assets/Sounds/SFX/654251__strechy__item-pickup-sound.ogg" id="3_ch6b7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0aulo"]
 radius = 15.0
@@ -104,6 +105,10 @@ one_shot = true
 [node name="BananaTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ch6b7")
+volume_db = -16.0
 
 [connection signal="body_entered" from="CollectArea" to="." method="_on_collect_area_body_entered"]
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]

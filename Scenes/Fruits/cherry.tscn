@@ -1,9 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://cmf2vtsdysxtu"]
+[gd_scene load_steps=20 format=3 uid="uid://cmf2vtsdysxtu"]
 
 [ext_resource type="PackedScene" uid="uid://bf71m5f7idu34" path="res://Scenes/Fruits/fruit_template.tscn" id="1_85rih"]
 [ext_resource type="Texture2D" uid="uid://cs8vdravbksll" path="res://Assets/fruit union/fruits.png" id="2_f5k0a"]
 [ext_resource type="Script" path="res://Scenes/Fruits/cherry.gd" id="2_yt7pm"]
 [ext_resource type="Texture2D" uid="uid://b8s7cgx8va5wt" path="res://Assets/Circle/SpriteSheetOrange.png" id="3_mso3h"]
+[ext_resource type="AudioStream" uid="uid://dlie8200g08f0" path="res://Assets/Sounds/SFX/zapsplat_cartoon_stretch_expand_grow_rubber_010_103889.mp3" id="5_o5kbj"]
+[ext_resource type="AudioStream" uid="uid://dg24qei1ybun6" path="res://Assets/Sounds/SFX/431174__highpixel__fireball-explosion.wav" id="5_usfij"]
+[ext_resource type="AudioStream" uid="uid://efsjqesr1v6f" path="res://Assets/Sounds/SFX/mixkit-long-pop-2358.wav" id="7_3haay"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hfum"]
 radius = 70.0
@@ -19,10 +22,10 @@ tracks/0/path = NodePath("Image:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.5, 1.3, 1.5, 2.3, 2.5, 3.3, 3.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1.5, 2.5, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(1, 1), Vector2(1.4, 1.4), Vector2(1.3, 1.3), Vector2(1.7, 1.7), Vector2(1.6, 1.6), Vector2(2, 2), Vector2(1.9, 1.9)]
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1), Vector2(1.3, 1.3), Vector2(1.6, 1.6), Vector2(1.9, 1.9)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -110,6 +113,51 @@ tracks/7/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Splode")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_usfij")
+}],
+"times": PackedFloat32Array(3.48)
+}
+tracks/8/use_blend = true
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Spawn")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.4,
+"start_offset": 0.0,
+"stream": ExtResource("7_3haay")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/9/use_blend = true
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Stretch")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_o5kbj")
+}],
+"times": PackedFloat32Array(2.26)
+}
+tracks/10/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3oeuw"]
 length = 0.001
@@ -294,5 +342,14 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" index="0"]
 shape = SubResource("CircleShape2D_hebhw")
 debug_color = Color(0.905882, 0, 0.0980392, 0.419608)
+
+[node name="Splode" type="AudioStreamPlayer2D" parent="." index="6"]
+volume_db = -9.0
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="." index="7"]
+volume_db = -6.0
+
+[node name="Stretch" type="AudioStreamPlayer2D" parent="." index="8"]
+volume_db = -8.0
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

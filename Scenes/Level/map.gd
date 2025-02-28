@@ -23,8 +23,7 @@ var extra_spawns = [
 	{"amount": 4, "weight": 0.9},
 	{"amount": 5, "weight": 0.1}
 ]
-var locked_power_ups = ['Apple', 'Watermelon', 'Pineapple', 'Banana']
-var power_ups = []
+
 
 func _ready():
 	var tween = create_tween()
@@ -35,6 +34,24 @@ func _process(_delta):
 		%StrCount.text = Globals.fix_nums(Globals.Strawberries)
 	if int(%GrpCount.text) != Globals.Grapes:
 		%GrpCount.text = Globals.fix_nums(Globals.Grapes)
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		%PauseMenu.visible = !%PauseMenu.visible
+
+func update_player_data():
+	SaveLoad.load_game()
+	max_size = Globals.SizeUpgCount + 1
+	max_spawns = Globals.ExtraUpgCount + 1
+	for i in range(Globals.SpeedUpgCount):
+		$Player.speed += 20
+	for i in range(Globals.RangeUpgCount):
+		$Player.get_child(3).scale *= 1.1
+	for i in range(Globals.GhostsUpgCount):
+		$Ghosts.add_child(Ghost.instantiate())
+	for i in range(Globals.RateUpgCount):
+		%StrawberryTimer.wait_time *= 0.8
+	for i in range(Globals.GrateUpgCount):
+		%GrapeTimer.wait_time *= 0.9
 
 func get_random_scale(max_options):
 	var total_weight = 0
@@ -104,8 +121,14 @@ func _on_strawberry_timer_timeout():
 			await get_tree().create_timer(0.1).timeout
 
 func _on_cherry_timer_timeout():
-	if Globals.entities > 50:
-		_spawn_fruit(Cherry, 'Cherry')
+	if Globals.entities > 250:
+		_spawn_cherries(4)
+	elif Globals.entities > 200:
+		_spawn_cherries(3)
+	elif Globals.entities > 100:
+		_spawn_cherries(2)
+	elif Globals.entities > 30:
+		_spawn_cherries(1)
 
 func _on_grape_timer_timeout():
 	if Globals.entities < 300:
@@ -115,9 +138,9 @@ func _on_grape_timer_timeout():
 
 func _on_powerup_timer_timeout():
 	if Globals.entities < 300:
-		var fruit = power_ups[randi()%len(power_ups)]
+		var fruit = Globals.power_ups[randi()%len(Globals.power_ups)]
 		while last_powerup == fruit and Globals.PowerupsUpgCount != 1:
-			fruit = power_ups[randi()%len(power_ups)]
+			fruit = Globals.power_ups[randi()%len(Globals.power_ups)]
 		last_powerup = fruit
 		
 		if fruit == 'Apple':
@@ -133,15 +156,22 @@ func _on_powerup_timer_timeout():
 	print(%PowerupTimer.wait_time)
 	%PowerupTimer.start()
 
+func _spawn_cherries(amount):
+	for i in range(amount):
+		_spawn_fruit(Cherry, "Cherry")
+		await get_tree().create_timer(1.2).timeout
+
 #===========================================================#
 #-----------------------SHOP-BUTTONS------------------------#
 #===========================================================#
 
 func _on_strawberry_shop_button_pressed():
+	$Sounds/Click.play()
 	%StrawberryShop.visible = !(%StrawberryShop.visible)
 	%GrapeShop.visible = false
 
 func _on_grape_shop_button_pressed():
+	$Sounds/Click.play()
 	%GrapeShop.visible = !(%GrapeShop.visible)
 	%StrawberryShop.visible = false
 
@@ -169,6 +199,7 @@ func _on_strawberry_shop_purchase_rate():
 
 func _on_strawberry_shop_purchase_speed():
 	$Player.speed += 20
+	$Player._update_player_anim_speed()
 	Globals.Strawberries -= Globals.SpeedPrice
 	if Globals.SpeedUpgCount > 6:
 		Globals.SpeedPrice *= 4
@@ -178,7 +209,7 @@ func _on_strawberry_shop_purchase_speed():
 		Globals.SpeedPrice *= 1.5
 
 func _on_strawberry_shop_purchase_size():
-	max_size += 1
+	max_size = Globals.SizeUpgCount + 1
 	Globals.Strawberries -= Globals.SizePrice
 	Globals.SizePrice *= 20
 
@@ -188,7 +219,7 @@ func _on_strawberry_shop_purchase_grapes():
 	Globals.Strawberries -= Globals.GrapesPrice
 
 func _on_grape_shop_purchase_extra():
-	max_spawns += 1
+	max_spawns = Globals.ExtraUpgCount + 1
 	Globals.Grapes -= Globals.ExtraPrice
 	Globals.ExtraPrice *= pow(2, Globals.ExtraUpgCount + 1) * 2
 
@@ -215,10 +246,9 @@ func _on_grape_shop_purchase_grate():
 		Globals.GratePrice *= 2
 	else:
 		Globals.GratePrice *= 1.5
-	print(%GrapeTimer.wait_time)
 
 func _on_grape_shop_purchase_powerups():
-	power_ups.append(locked_power_ups.pop_back())
+	Globals.power_ups.append(Globals.locked_power_ups.pop_back())
 	%PowerupTimer.wait_time = randf_range(10, 20)
 	%PowerupTimer.start()
 	Globals.Grapes -= Globals.PowerupsPrice
@@ -238,3 +268,6 @@ func _on_cherry_drop_fruits(amount):
 	tween.tween_property(%fruit_loss, 'self_modulate', Color('ffffff00'), 2)
 	await get_tree().create_timer(2).timeout
 	%fruit_loss.text = ''
+
+func _on_pause_menu_quitting():
+	SaveLoad.save_game()

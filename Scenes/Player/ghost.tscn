@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpuxjpf7s6s8d"]
+[gd_scene load_steps=7 format=3 uid="uid://cpuxjpf7s6s8d"]
 
 [ext_resource type="Script" path="res://Scenes/Player/ghost.gd" id="1_hypm5"]
 [ext_resource type="Texture2D" uid="uid://cga7xavhsjhe" path="res://Assets/Ui/Emote/emote2.png" id="2_yoexm"]
+[ext_resource type="AudioStream" uid="uid://b47ud8kd0memn" path="res://Assets/Sounds/SFX/543386__thedragonsspark__nom-noise.wav" id="3_elpa7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1ylg"]
 radius = 36.6673
@@ -45,6 +46,10 @@ shape = SubResource("CapsuleShape2D_75hal")
 
 [node name="WanderTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+
+[node name="Nom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_elpa7")
+volume_db = -25.0
 
 [connection signal="body_entered" from="PickUpRange" to="." method="_on_pick_up_range_body_entered"]
 [connection signal="body_exited" from="PickUpRange" to="." method="_on_pick_up_range_body_exited"]

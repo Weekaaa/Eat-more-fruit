@@ -1,11 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwp1ih2chikf4"]
+[gd_scene load_steps=9 format=3 uid="uid://bwp1ih2chikf4"]
 
 [ext_resource type="Script" path="res://Scenes/UI/buy_button.gd" id="1_lxxyx"]
 [ext_resource type="Texture2D" uid="uid://cpw26xsj5djr0" path="res://Assets/Ui/Theme/Theme1/button_normal.png" id="1_oo0xi"]
 [ext_resource type="Texture2D" uid="uid://b67jjeg2dn80h" path="res://Assets/Ui/Theme/Theme1/button_pressed.png" id="2_ptreu"]
 [ext_resource type="Texture2D" uid="uid://da6eq2emm1ibx" path="res://Assets/Ui/Theme/Theme1/button_hover.png" id="3_m1kmh"]
 [ext_resource type="Texture2D" uid="uid://cdtkvc8inoay5" path="res://Assets/Ui/Theme/Theme1/button_disabled.png" id="4_1wlqv"]
+[ext_resource type="AudioStream" uid="uid://dj7u75xkos8q2" path="res://Assets/Sounds/SFX/633232__dan_audiofile__cash-registersale-sound-old-shopstereo.wav" id="6_mat83"]
 
+[sub_resource type="Animation" id="Animation_67slo"]
+resource_name = "buy"
+length = 0.62
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 11.0487,
+"start_offset": 3.14005,
+"stream": ExtResource("6_mat83")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e2mg6"]
+_data = {
+"buy": SubResource("Animation_67slo")
+}
 
 [node name="BuyButton" type="Control"]
 layout_mode = 3
@@ -30,5 +54,13 @@ texture_pressed = ExtResource("2_ptreu")
 texture_hover = ExtResource("3_m1kmh")
 texture_disabled = ExtResource("4_1wlqv")
 stretch_mode = 0
+
+[node name="Shing" type="AudioStreamPlayer2D" parent="."]
+volume_db = -12.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e2mg6")
+}
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

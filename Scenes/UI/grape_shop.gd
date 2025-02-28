@@ -11,7 +11,7 @@ var enabled_text: Color = Color("ffffff")
 
 
 func _process(_delta):
-	if Globals.Grapes < Globals.GhostsPrice or Globals.GhostsUpgCount >= 10:
+	if Globals.Grapes < Globals.GhostsPrice or Globals.GhostsUpgCount >= 5:
 		%GhostsButton.get_child(0).disabled = true
 		%GhostsPrice.modulate = disabled_text
 	else:
@@ -59,28 +59,43 @@ func _on_gain_button_button_pressed():
 	Globals.GainUpgCount += 1
 	purchase_gain.emit()
 	%GainTitle.text = "GAIN (" + str(Globals.GainUpgCount) + "/10)"
-	%GainPrice.text = Globals.fix_nums(Globals.GainPrice)
+	if Globals.GainUpgCount < 10:
+		%GainPrice.text = Globals.fix_nums(Globals.GainPrice)
+	else:
+		%GainPrice.text = "DONE"
 
 func _on_extra_button_button_pressed():
 	Globals.ExtraUpgCount += 1
 	purchase_extra.emit()
 	%ExtraTitle.text = "EXTRA SPAWNS (" + str(Globals.ExtraUpgCount) + "/4)"
-	%ExtraPrice.text = Globals.fix_nums(Globals.ExtraPrice)
+	if Globals.ExtraUpgCount < 4:
+		%ExtraPrice.text = Globals.fix_nums(Globals.ExtraPrice)
+	else:
+		%ExtraPrice.text = "DONE"
 
 func _on_grate_button_button_pressed():
 	Globals.GrateUpgCount += 1
 	purchase_grate.emit()
 	%GrateTitle.text = "SPAWN RATE (" + str(Globals.GrateUpgCount) + "/15)"
-	%GratePrice.text = Globals.fix_nums(Globals.GratePrice)
+	if Globals.GrateUpgCount < 15:
+		%GratePrice.text = Globals.fix_nums(Globals.GratePrice)
+	else:
+		%GratePrice.text = "DONE"
 
 func _on_ghosts_button_button_pressed():
 	Globals.GhostsUpgCount += 1
 	purchase_ghosts.emit()
-	%GhostsTitle.text = "AUTO COLLECT (" + str(Globals.GhostsUpgCount) + "/10)"
-	%GhostsPrice.text = Globals.fix_nums(Globals.GhostsPrice)
+	%GhostsTitle.text = "AUTO COLLECT (" + str(Globals.GhostsUpgCount) + "/5)"
+	if Globals.GhostsUpgCount < 5:
+		%GhostsPrice.text = Globals.fix_nums(Globals.GhostsPrice)
+	else:
+		%GhostsPrice.text = "DONE"
 
 func _on_powerups_button_button_pressed():
 	Globals.PowerupsUpgCount += 1
 	purchase_powerups.emit()
 	%PowerupsTitle.text = "POWER-UPS (" + str(Globals.PowerupsUpgCount) + "/4)"
-	%PowerupsPrice.text = Globals.fix_nums(Globals.PowerupsPrice)
+	if Globals.PowerupsUpgCount < 4:
+		%PowerupsPrice.text = Globals.fix_nums(Globals.PowerupsPrice)
+	else:
+		%PowerupsPrice.text = "DONE"

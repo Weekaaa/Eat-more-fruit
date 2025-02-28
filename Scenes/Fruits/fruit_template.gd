@@ -13,6 +13,7 @@ func _physics_process(_delta):
 	target_position = (player_position - position).normalized()
 	
 	if follow_target:
+		speed += 5
 		velocity = target_position * speed
 		move_and_slide()
 

@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
+const BASE_SPEED: int = 125
 var speed: int = 125
 var _theta: float
 var _direction: Vector2
 var current_pickup
-var banana_mult: int = 1
+var pine_mult: int = 1
 @export var rotation_speed: float = TAU * 2
 
 func _ready():
@@ -24,18 +25,21 @@ func _physics_process(delta):
 	else:
 		$AnimationPlayer.stop()
 
+func _update_player_anim_speed():
+	$AnimationPlayer.speed_scale = float(speed) / BASE_SPEED
+	print($AnimationPlayer.speed_scale)
 
 func _on_pick_up_range_body_entered(body):
 	if "track_player" in body:
 		body.track_player()
 
-
 func _on_collect_area_body_entered(body):
 	if "collected" in body:
+		$Pickup.play()
 		if body.get_parent().name == 'Strawberry':
-			Globals.Strawberries += body.gain * banana_mult
+			Globals.Strawberries += body.gain * pine_mult
 		elif body.get_parent().name == 'Grape':
-			Globals.Grapes += body.gain * banana_mult
+			Globals.Grapes += body.gain * pine_mult
 		elif body.name == 'Apple':
 			current_pickup = $PickUpRange.scale
 			$PickUpRange.scale *= 1.4
@@ -45,12 +49,13 @@ func _on_collect_area_body_entered(body):
 				if timer.name != 'CherryTimer':
 					timer.wait_time *= 0.5
 			$WatermelonTimer.start()
-		elif body.name == 'Pineapple':
-			speed += 150
-			$PineappleTimer.start()
 		elif body.name == 'Banana':
-			banana_mult = 2
+			speed += 150
+			_update_player_anim_speed()
 			$BananaTimer.start()
+		elif body.name == 'Pineapple':
+			pine_mult = 2
+			$PineappleTimer.start()
 		
 		body.collected()
 
@@ -63,7 +68,8 @@ func _on_watermelon_timer_timeout():
 			timer.wait_time *= 2
 
 func _on_pineapple_timer_timeout():
-	speed -= 150
+	pine_mult = 1
 
 func _on_banana_timer_timeout():
-	banana_mult = 1
+	speed -= 150
+	_update_player_anim_speed()

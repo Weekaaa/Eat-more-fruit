@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cpqgkivvdcl3b"]
+[gd_scene load_steps=39 format=3 uid="uid://cpqgkivvdcl3b"]
 
 [ext_resource type="Texture2D" uid="uid://bxkv6ukshle67" path="res://Assets/fruit union/blue_sky.png" id="1_0ta4k"]
 [ext_resource type="Script" path="res://Scenes/Level/main_menu.gd" id="1_i1wtu"]
@@ -7,6 +7,10 @@
 [ext_resource type="StyleBox" uid="uid://dh7m02loudpn0" path="res://Scenes/UI/Templates/main_menu_button.tres" id="4_nvmur"]
 [ext_resource type="Texture2D" uid="uid://yrppjacspmue" path="res://Assets/fruit union/fruits2.png" id="5_jmct5"]
 [ext_resource type="Texture2D" uid="uid://cs8vdravbksll" path="res://Assets/fruit union/fruits.png" id="7_obnnj"]
+[ext_resource type="AudioStream" uid="uid://d3yyxchsc11ms" path="res://Assets/Sounds/SFX/414719__devern__mouse-click.wav" id="8_4ondy"]
+[ext_resource type="AudioStream" uid="uid://bimg10x7h10x0" path="res://Assets/Sounds/SFX/198449__cs279__menu-scroll-selection-sound.wav" id="9_bnhfu"]
+[ext_resource type="AudioStream" uid="uid://dhis6oti6t821" path="res://Assets/Sounds/SFX/425699__moogy73__woosh_low_03.wav" id="10_omihf"]
+[ext_resource type="AudioStream" uid="uid://5qq7sl7s5v4e" path="res://Assets/Sounds/Music/mixkit-tim-tom-tammy-1083.mp3" id="11_ic5vy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_unrbx"]
 texture = ExtResource("1_0ta4k")
@@ -151,7 +155,7 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-expand_margin_left = 80.0
+expand_margin_left = 120.0
 expand_margin_right = 95.0
 anti_aliasing = false
 
@@ -167,7 +171,7 @@ corner_radius_top_left = 20
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
-expand_margin_left = 80.0
+expand_margin_left = 120.0
 expand_margin_right = 95.0
 anti_aliasing = false
 
@@ -184,6 +188,22 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 expand_margin_left = 30.0
+expand_margin_right = 95.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0r64v"]
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(0.4, 0)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 60.0
 expand_margin_right = 95.0
 anti_aliasing = false
 
@@ -564,7 +584,7 @@ anchor_top = 0.332
 anchor_right = 0.253
 anchor_bottom = 0.332
 offset_left = -278.4
-offset_top = 9.59999
+offset_top = 9.60001
 offset_right = 215.6
 offset_bottom = 262.6
 grow_vertical = 0
@@ -624,6 +644,23 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_pcgdr")
 theme_override_styles/normal = SubResource("StyleBoxFlat_55w4r")
 text = "DONT PRESS	"
 
+[node name="QuitButton" type="Button" parent="Buttons"]
+layout_mode = 2
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_tyqyu")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5eboj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lfpf2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pcgdr")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r64v")
+text = "QUIT GAME"
+
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -639,5 +676,27 @@ libraries = {
 }
 autoplay = "TextMovement"
 
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Click" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_4ondy")
+
+[node name="Select" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("9_bnhfu")
+
+[node name="Woosh" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("10_omihf")
+volume_db = -4.0
+
+[node name="Song" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("11_ic5vy")
+volume_db = -12.0
+autoplay = true
+parameters/looping = true
+
 [connection signal="button_up" from="Buttons/StartGameButton" to="." method="_on_start_game_button_button_up"]
+[connection signal="mouse_entered" from="Buttons/StartGameButton" to="." method="_on_start_game_button_mouse_entered"]
 [connection signal="button_up" from="Buttons/WatermelonButton" to="." method="_on_watermelon_button_button_up"]
+[connection signal="mouse_entered" from="Buttons/WatermelonButton" to="." method="_on_watermelon_button_mouse_entered"]
+[connection signal="button_up" from="Buttons/QuitButton" to="." method="_on_quit_button_button_up"]
+[connection signal="mouse_entered" from="Buttons/QuitButton" to="." method="_on_watermelon_button_mouse_entered"]
