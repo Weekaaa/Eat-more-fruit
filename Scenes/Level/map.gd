@@ -27,7 +27,10 @@ var extra_spawns = [
 
 func _ready():
 	var tween = create_tween()
-	tween.tween_property($ColorRect, "modulate", Color(00000000), 1)
+	tween.tween_property($Transition, "modulate", Color(00000000), 1)
+	await get_tree().create_timer(1).timeout
+	$Transition.scale = Vector2(0, 0)
+	update_player_data()
 
 func _process(_delta):
 	if int(%StrCount.text) != Globals.Strawberries:
@@ -42,6 +45,8 @@ func update_player_data():
 	SaveLoad.load_game()
 	max_size = Globals.SizeUpgCount + 1
 	max_spawns = Globals.ExtraUpgCount + 1
+	if Globals.GrapesUpgCount != 0:
+		%GrapeShopButton.visible = true
 	for i in range(Globals.SpeedUpgCount):
 		$Player.speed += 20
 	for i in range(Globals.RangeUpgCount):

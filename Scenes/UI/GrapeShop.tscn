@@ -204,7 +204,7 @@ theme_override_constants/separation = -4
 [node name="GhostsTitle" type="Label" parent="NinePatchRect/ScrollContainer/VBoxContainer/Ghosts/GhostsDetails"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "AUTO COLLECT (0/10)"
+text = "AUTO COLLECT (0/5)"
 label_settings = ExtResource("2_s7048")
 
 [node name="GhostsDesc" type="Label" parent="NinePatchRect/ScrollContainer/VBoxContainer/Ghosts/GhostsDetails"]
