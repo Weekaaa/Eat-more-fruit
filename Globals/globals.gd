@@ -1,6 +1,7 @@
 extends Node
 
 signal powerup_collected(body)
+signal player_quit()
 
 # player collectables
 var entities: int = 0

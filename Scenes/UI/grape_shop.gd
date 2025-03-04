@@ -88,39 +88,19 @@ func _ready():
 func _on_gain_button_button_pressed():
 	Globals.GainUpgCount += 1
 	purchase_gain.emit()
-	if Globals.GainUpgCount < 10:
-		%GainPrice.text = Globals.fix_nums(Globals.GainPrice)
-	else:
-		%GainPrice.text = "DONE"
 
 func _on_extra_button_button_pressed():
 	Globals.ExtraUpgCount += 1
 	purchase_extra.emit()
-	if Globals.ExtraUpgCount < 4:
-		%ExtraPrice.text = Globals.fix_nums(Globals.ExtraPrice)
-	else:
-		%ExtraPrice.text = "DONE"
 
 func _on_grate_button_button_pressed():
 	Globals.GrateUpgCount += 1
 	purchase_grate.emit()
-	if Globals.GrateUpgCount < 15:
-		%GratePrice.text = Globals.fix_nums(Globals.GratePrice)
-	else:
-		%GratePrice.text = "DONE"
 
 func _on_ghosts_button_button_pressed():
 	Globals.GhostsUpgCount += 1
 	purchase_ghosts.emit()
-	if Globals.GhostsUpgCount < 5:
-		%GhostsPrice.text = Globals.fix_nums(Globals.GhostsPrice)
-	else:
-		%GhostsPrice.text = "DONE"
 
 func _on_powerups_button_button_pressed():
 	Globals.PowerupsUpgCount += 1
 	purchase_powerups.emit()
-	if Globals.PowerupsUpgCount < 4:
-		%PowerupsPrice.text = Globals.fix_nums(Globals.PowerupsPrice)
-	else:
-		%PowerupsPrice.text = "DONE"

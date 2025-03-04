@@ -4,12 +4,18 @@ const BASE_SPEED: int = 125
 var speed: int = 125
 var _theta: float
 var _direction: Vector2
+@export var rotation_speed: float = TAU * 2
+
+var apple_active: bool = false
+var banana_active: bool = false
+var pine_active: bool = false
+var watermelon_active: bool = false
 var current_pickup
 var pine_mult: int = 1
-@export var rotation_speed: float = TAU * 2
 
 func _ready():
 	Globals.powerup_collected.connect(_on_collect_area_body_entered)
+	Globals.player_quit.connect(_handle_player_quit)
 
 func _process(_delta):
 	_direction = Input.get_vector("left", "right", "up", "down")
@@ -73,3 +79,18 @@ func _on_pineapple_timer_timeout():
 func _on_banana_timer_timeout():
 	speed -= 150
 	_update_player_anim_speed()
+
+func _handle_player_quit():
+	for timer in [$AppleTimer, $WatermelonTimer, $PineappleTimer, $BananaTimer]:
+		timer.paused = true
+	if banana_active:
+		speed -= 150
+		_update_player_anim_speed()
+	if pine_active:
+		pine_mult = 1
+	if apple_active:
+		$PickUpRange.scale = current_pickup
+	if watermelon_active:
+		for timer in get_parent().get_node('Timers').get_children():
+			if timer.name != 'CherryTimer':
+				timer.wait_time *= 2

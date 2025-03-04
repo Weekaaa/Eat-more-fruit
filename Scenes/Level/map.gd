@@ -39,6 +39,8 @@ func _process(_delta):
 		%GrpCount.text = Globals.fix_nums(Globals.Grapes)
 	
 	if Input.is_action_just_pressed("ui_cancel"):
+		%StrawberryShop.visible = false
+		%GrapeShop.visible = false
 		%PauseMenu.visible = !%PauseMenu.visible
 
 func update_player_data():
@@ -174,11 +176,13 @@ func _on_strawberry_shop_button_pressed():
 	$Sounds/Click.play()
 	%StrawberryShop.visible = !(%StrawberryShop.visible)
 	%GrapeShop.visible = false
+	%PauseMenu.visible = false
 
 func _on_grape_shop_button_pressed():
 	$Sounds/Click.play()
 	%GrapeShop.visible = !(%GrapeShop.visible)
 	%StrawberryShop.visible = false
+	%PauseMenu.visible = false
 
 #===========================================================#
 #----------------------UPGRADE-BUTTONS----------------------#

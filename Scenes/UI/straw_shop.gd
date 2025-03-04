@@ -88,34 +88,18 @@ func _ready():
 func _on_speed_button_button_pressed():
 	Globals.SpeedUpgCount += 1
 	purchase_speed.emit()
-	if Globals.SpeedUpgCount < 10:
-		%SpeedPrice.text = Globals.fix_nums(Globals.SpeedPrice)
-	else:
-		%SpeedPrice.text = "DONE"
 
 func _on_rate_button_button_pressed():
 	Globals.RateUpgCount += 1
 	purchase_rate.emit()
-	if Globals.RateUpgCount < 15:
-		%RatePrice.text = Globals.fix_nums(Globals.RatePrice)
-	else:
-		%RatePrice.text = 'DONE'
 
 func _on_range_button_button_pressed():
 	Globals.RangeUpgCount += 1
 	purchase_range.emit()
-	if Globals.RangeUpgCount < 15:
-		%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
-	else:
-		%RangePrice.text = 'DONE'
 
 func _on_size_button_button_pressed():
 	Globals.SizeUpgCount += 1
 	purchase_size.emit()
-	if Globals.SizeUpgCount < 2:
-		%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
-	else:
-		%SizePrice.text = 'DONE'
 
 func _on_grapes_button_button_pressed():
 	Globals.GrapesUpgCount += 1
