@@ -11,65 +11,11 @@ var enabled_text: Color = Color("ffffff")
 
 
 func _process(_delta):
-	if Globals.Strawberries < Globals.SpeedPrice or Globals.SpeedUpgCount >= 10:
-		%SpeedButton.get_child(0).disabled = true
-		%SpeedPrice.modulate = disabled_text
-		if Globals.SpeedUpgCount >= 10:
-			%SpeedPrice.text = "DONE"
-		else:
-			%SpeedPrice.text = Globals.fix_nums(Globals.SpeedPrice)
-	else:
-		%SpeedButton.get_child(0).disabled = false
-		%SpeedPrice.modulate = enabled_text
-		%SpeedPrice.text = Globals.fix_nums(Globals.SpeedPrice)
-	
-	if Globals.Strawberries < Globals.RatePrice or Globals.RateUpgCount >= 15:
-		%RateButton.get_child(0).disabled = true
-		%RatePrice.modulate = disabled_text
-		if Globals.RateUpgCount >= 15:
-			%RatePrice.text = "DONE"
-		else:
-			%RatePrice.text = Globals.fix_nums(Globals.RatePrice)
-	else:
-		%RateButton.get_child(0).disabled = false
-		%RatePrice.modulate = enabled_text
-		%RatePrice.text = Globals.fix_nums(Globals.RatePrice)
-	
-	if Globals.Strawberries < Globals.RangePrice or Globals.RangeUpgCount >= 15:
-		%RangeButton.get_child(0).disabled = true
-		%RangePrice.modulate = disabled_text
-		if Globals.RangeUpgCount >= 15:
-			%RangePrice.text = "DONE"
-		else:
-			%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
-	else:
-		%RangeButton.get_child(0).disabled = false
-		%RangePrice.modulate = enabled_text
-		%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
-	
-	if Globals.Strawberries < Globals.SizePrice or Globals.SizeUpgCount >= 2:
-		%SizeButton.get_child(0).disabled = true
-		%SizePrice.modulate = disabled_text
-		if Globals.SizeUpgCount >= 2:
-			%SizePrice.text = "DONE"
-		else:
-			%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
-	else:
-		%SizeButton.get_child(0).disabled = false
-		%SizePrice.modulate = enabled_text
-		%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
-	
-	if Globals.Strawberries < Globals.GrapesPrice or Globals.GrapesUpgCount >= 1:
-		%GrapesButton.get_child(0).disabled = true
-		%GrapesPrice.modulate = disabled_text
-		if Globals.GrapesUpgCount >= 1:
-			%GrapesPrice.text = "DONE"
-		else:
-			%GrapesPrice.text = Globals.fix_nums(Globals.GrapesPrice)
-	else:
-		%GrapesButton.get_child(0).disabled = false
-		%GrapesPrice.modulate = enabled_text
-		%GrapesPrice.text = Globals.fix_nums(Globals.GrapesPrice)
+	check_upgrade(%RateButton, %RatePrice, Globals.RatePrice, Globals.RangeUpgCount, 15)
+	check_upgrade(%SizeButton, %SizePrice, Globals.SizePrice, Globals.SizeUpgCount, 2)
+	check_upgrade(%RangeButton, %RangePrice, Globals.RangePrice, Globals.RangeUpgCount, 15)
+	check_upgrade(%SpeedButton, %SpeedPrice, Globals.SpeedPrice, Globals.SpeedUpgCount, 10)
+	check_upgrade(%GrapesButton, %GrapesPrice, Globals.GrapesPrice, Globals.GrapesUpgCount, 1)
 	
 	%SpeedTitle.text = "SPEED (" + str(Globals.SpeedUpgCount) + "/10)"
 	%RateTitle.text = "SPAWN RATE (" + str(Globals.RateUpgCount) + "/15)"
@@ -84,6 +30,12 @@ func _ready():
 	%RangePrice.text = Globals.fix_nums(Globals.RangePrice)
 	%SizePrice.text = Globals.fix_nums(Globals.SizePrice)
 	%GrapesPrice.text = Globals.fix_nums(Globals.GrapesPrice)
+
+func check_upgrade(button, price_label, price, upg_count, max_upg_count):
+	var is_disabled = Globals.Strawberries < price or upg_count >= max_upg_count
+	button.get_child(0).disabled = is_disabled
+	price_label.modulate = disabled_text if is_disabled else enabled_text
+	price_label.text = "DONE" if upg_count >= max_upg_count else Globals.fix_nums(price)
 
 func _on_speed_button_button_pressed():
 	Globals.SpeedUpgCount += 1

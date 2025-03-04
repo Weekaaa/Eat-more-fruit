@@ -10,16 +10,15 @@ height = 46.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7kd5k"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nm5p3"]
-radius = 20.0
-height = 60.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6lyn"]
+radius = 29.0
 
 [sub_resource type="Animation" id="Animation_g50as"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Image:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -37,7 +36,7 @@ step = 0.075
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Image:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -57,7 +56,7 @@ _data = {
 collision_mask = 4
 script = ExtResource("1_h21yi")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Image" type="Sprite2D" parent="."]
 position = Vector2(-2, 0)
 rotation = 1.5708
 texture = ExtResource("1_oxs2o")
@@ -82,8 +81,14 @@ collision_layer = 16
 collision_mask = 2
 
 [node name="Range" type="CollisionShape2D" parent="PickUpRange"]
-shape = SubResource("CapsuleShape2D_nm5p3")
+shape = SubResource("CircleShape2D_o6lyn")
 debug_color = Color(0, 0.646344, 0.239302, 0.42)
+
+[node name="Line2D" type="Line2D" parent="PickUpRange/Range"]
+points = PackedVector2Array(0, -29, -8, -28, -14, -25, -20, -20, -25, -14, -28, -6, -29, 0, -28, 6, -25, 14, -21, 19, -14, 25, -9, 27, 0, 29, 7, 28, 14, 25, 20, 21, 25, 14, 28, 7, 29, 0, 27, -9, 24, -15, 20, -20, 14, -25, 7, -28)
+closed = true
+width = 1.0
+default_color = Color(1, 1, 1, 0.215686)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

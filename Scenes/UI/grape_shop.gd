@@ -11,65 +11,11 @@ var enabled_text: Color = Color("ffffff")
 
 
 func _process(_delta):
-	if Globals.Grapes < Globals.GhostsPrice or Globals.GhostsUpgCount >= 5:
-		%GhostsButton.get_child(0).disabled = true
-		%GhostsPrice.modulate = disabled_text
-		if Globals.GhostsUpgCount >= 5:
-			%GhostsPrice.text = "DONE"
-		else:
-			%GhostsPrice.text = Globals.fix_nums(Globals.GhostsPrice)
-	else:
-		%GhostsButton.get_child(0).disabled = false
-		%GhostsPrice.modulate = enabled_text
-		%GhostsPrice.text = Globals.fix_nums(Globals.GhostsPrice)
-		
-	if Globals.Grapes < Globals.GratePrice or Globals.GrateUpgCount >= 15:
-		%GrateButton.get_child(0).disabled = true
-		%GratePrice.modulate = disabled_text
-		if Globals.GrateUpgCount >= 15:
-			%GratePrice.text = "DONE"
-		else:
-			%GratePrice.text = Globals.fix_nums(Globals.GratePrice)
-	else:
-		%GrateButton.get_child(0).disabled = false
-		%GratePrice.modulate = enabled_text
-		%GratePrice.text = Globals.fix_nums(Globals.GratePrice)
-		
-	if Globals.Grapes < Globals.ExtraPrice or Globals.ExtraUpgCount >= 4:
-		%ExtraButton.get_child(0).disabled = true
-		%ExtraPrice.modulate = disabled_text
-		if Globals.ExtraUpgCount >= 4:
-			%ExtraPrice.text = "DONE"
-		else:
-			%ExtraPrice.text = Globals.fix_nums(Globals.ExtraPrice)
-	else:
-		%ExtraButton.get_child(0).disabled = false
-		%ExtraPrice.modulate = enabled_text
-		%ExtraPrice.text = Globals.fix_nums(Globals.ExtraPrice)
-		
-	if Globals.Grapes < Globals.GainPrice or Globals.GainUpgCount >= 10:
-		%GainButton.get_child(0).disabled = true
-		%GainPrice.modulate = disabled_text
-		if Globals.GainUpgCount >= 10:
-			%GainPrice.text = "DONE"
-		else:
-			%GainPrice.text = Globals.fix_nums(Globals.GainPrice)
-	else:
-		%GainButton.get_child(0).disabled = false
-		%GainPrice.modulate = enabled_text
-		%GainPrice.text = Globals.fix_nums(Globals.GainPrice)
-		
-	if Globals.Grapes < Globals.PowerupsPrice or Globals.PowerupsUpgCount >= 4:
-		%PowerupsButton.get_child(0).disabled = true
-		%PowerupsPrice.modulate = disabled_text
-		if Globals.PowerupsUpgCount >= 4:
-			%PowerupsPrice.text = "DONE"
-		else:
-			%PowerupsPrice.text = Globals.fix_nums(Globals.PowerupsPrice)
-	else:
-		%PowerupsButton.get_child(0).disabled = false
-		%PowerupsPrice.modulate = enabled_text
-		%PowerupsPrice.text = Globals.fix_nums(Globals.PowerupsPrice)
+	check_upgrade(%GhostsButton, %GhostsPrice, Globals.GhostsPrice, Globals.GhostsUpgCount, 5)
+	check_upgrade(%GrateButton, %GratePrice, Globals.GratePrice, Globals.GrateUpgCount, 15)
+	check_upgrade(%ExtraButton, %ExtraPrice, Globals.ExtraPrice, Globals.ExtraUpgCount, 4)
+	check_upgrade(%GainButton, %GainPrice, Globals.GainPrice, Globals.GainUpgCount, 10)
+	check_upgrade(%PowerupsButton, %PowerupsPrice, Globals.PowerupsPrice, Globals.PowerupsUpgCount, 4)
 	
 	%GainTitle.text = "GAIN (" + str(Globals.GainUpgCount) + "/10)"
 	%ExtraTitle.text = "EXTRA SPAWNS (" + str(Globals.ExtraUpgCount) + "/4)"
@@ -84,6 +30,12 @@ func _ready():
 	%GhostsPrice.text = Globals.fix_nums(Globals.GhostsPrice)
 	%GainPrice.text = Globals.fix_nums(Globals.GainPrice)
 	%PowerupsPrice.text = Globals.fix_nums(Globals.PowerupsPrice)
+
+func check_upgrade(button, price_label, price, upg_count, max_upg_count):
+	var is_disabled = Globals.Grapes < price or upg_count >= max_upg_count
+	button.get_child(0).disabled = is_disabled
+	price_label.modulate = disabled_text if is_disabled else enabled_text
+	price_label.text = "DONE" if upg_count >= max_upg_count else Globals.fix_nums(price)
 
 func _on_gain_button_button_pressed():
 	Globals.GainUpgCount += 1
