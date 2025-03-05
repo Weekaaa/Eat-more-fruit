@@ -704,6 +704,10 @@ wait_time = 1.8
 unique_name_in_owner = true
 one_shot = true
 
+[node name="SaveTimer" type="Timer" parent="Timers"]
+wait_time = 15.0
+autostart = true
+
 [node name="Transition" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 1)
 z_index = 2
@@ -730,3 +734,4 @@ color = Color(0, 0, 0, 1)
 [connection signal="timeout" from="Timers/CherryTimer" to="." method="_on_cherry_timer_timeout"]
 [connection signal="timeout" from="Timers/GrapeTimer" to="." method="_on_grape_timer_timeout"]
 [connection signal="timeout" from="Timers/PowerupTimer" to="." method="_on_powerup_timer_timeout"]
+[connection signal="timeout" from="Timers/SaveTimer" to="." method="_on_save_timer_timeout"]

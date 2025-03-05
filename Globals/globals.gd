@@ -5,7 +5,7 @@ signal player_quit()
 
 # player collectables
 var entities: int = 0
-var Strawberries: int = 0
+var Strawberries: int = 10
 var Grapes: int = 0
 var locked_power_ups = ['Apple', 'Watermelon', 'Pineapple', 'Banana']
 var power_ups = []

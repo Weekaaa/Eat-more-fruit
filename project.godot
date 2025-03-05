@@ -13,6 +13,9 @@ config_version=5
 config/name="Fruit Game"
 run/main_scene="res://Scenes/Level/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0.109536, 0.604494, 1, 1)
+boot_splash/image="res://Assets/fruits.png"
+config/icon="res://Assets/fruits.png"
 
 [autoload]
 
@@ -67,3 +70,4 @@ down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"

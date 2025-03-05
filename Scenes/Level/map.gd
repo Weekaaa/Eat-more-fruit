@@ -39,16 +39,24 @@ func _process(_delta):
 		%GrpCount.text = Globals.fix_nums(Globals.Grapes)
 	
 	if Input.is_action_just_pressed("ui_cancel"):
-		%StrawberryShop.visible = false
-		%GrapeShop.visible = false
 		%PauseMenu.visible = !%PauseMenu.visible
+		if %StrawberryShop.visible or %GrapeShop.visible:
+			%StrawberryShop.visible = false
+			%GrapeShop.visible = false
+			%PauseMenu.visible = false
 
 func update_player_data():
 	SaveLoad.load_game()
 	max_size = Globals.SizeUpgCount + 1
 	max_spawns = Globals.ExtraUpgCount + 1
+	if Globals.PowerupsUpgCount > 0:
+		%PowerupTimer.wait_time = randf_range(10, 20)
+		%PowerupTimer.start()
 	if Globals.GrapesUpgCount != 0:
+		%GrapeTimer.start()
 		%GrapeShopButton.visible = true
+	for i in range(Globals.PowerupsUpgCount):
+		Globals.power_ups.append(Globals.locked_power_ups.pop_back())
 	for i in range(Globals.SpeedUpgCount):
 		$Player.speed += 20
 	for i in range(Globals.RangeUpgCount):
@@ -159,14 +167,17 @@ func _on_powerup_timer_timeout():
 		elif fruit == 'Banana':
 			_spawn_fruit(Banana, 'Banana')
 		
-	%PowerupTimer.wait_time = randf_range(10, 24)
-	print(%PowerupTimer.wait_time)
+	%PowerupTimer.wait_time = randf_range(10, 20)
 	%PowerupTimer.start()
 
 func _spawn_cherries(amount):
 	for i in range(amount):
 		_spawn_fruit(Cherry, "Cherry")
 		await get_tree().create_timer(1.2).timeout
+
+func _on_save_timer_timeout():
+	SaveLoad.save_game()
+
 
 #===========================================================#
 #-----------------------SHOP-BUTTONS------------------------#

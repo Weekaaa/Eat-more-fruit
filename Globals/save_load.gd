@@ -29,9 +29,6 @@ func save_game():
 	player_data.strawberries = Globals.Strawberries
 	player_data.grapes = Globals.Grapes
 	
-	player_data.locked_powerups = Globals.locked_power_ups
-	player_data.unlocked_powerups = Globals.power_ups
-	
 	ResourceSaver.save(player_data, SAVE_PATH)
 
 func load_game():
@@ -62,6 +59,3 @@ func load_game():
 			
 			Globals.Strawberries = loaded_data.strawberries
 			Globals.Grapes = loaded_data.grapes
-			
-			Globals.locked_power_ups = player_data.locked_powerups
-			Globals.power_ups = player_data.unlocked_powerups

@@ -9,8 +9,6 @@ class_name PlayerData
 
 @export var fruit_size : int = 0
 @export var fruit_extras : int = 0
-@export var locked_powerups : Array = []
-@export var unlocked_powerups : Array = []
 
 @export var strawberries : int = 0
 @export var grapes : int = 0
